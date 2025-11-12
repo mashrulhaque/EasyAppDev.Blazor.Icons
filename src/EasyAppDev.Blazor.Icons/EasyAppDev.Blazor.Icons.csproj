@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Trimming Configuration -->
+    <IsTrimmable>true</IsTrimmable>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <TrimMode>link</TrimMode>
+
+
+    <!-- Package Information -->
+    <PackageId>EasyAppDev.Blazor.Icons</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Your Name</Authors>
+    <Description>Meta-package for EasyAppDev Blazor icon libraries. Install specific icon libraries: EasyAppDev.Blazor.Icons.Lucide, EasyAppDev.Blazor.Icons.Bootstrap, or EasyAppDev.Blazor.Icons.MaterialDesign</Description>
+    <PackageTags>blazor;icons;svg;trimmable;lucide;material-design;bootstrap;embedded;no-runtime</PackageTags>
+    <RepositoryUrl>https://github.com/yourusername/EasyAppDev.Blazor.Icons</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <!-- Icon libraries are in separate packages -->
+  <!-- Lucide: EasyAppDev.Blazor.Icons.Lucide -->
+  <!-- Bootstrap: EasyAppDev.Blazor.Icons.Bootstrap -->
+  <!-- MaterialDesign: EasyAppDev.Blazor.Icons.MaterialDesign -->
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

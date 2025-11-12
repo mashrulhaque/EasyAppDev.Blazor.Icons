@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <!-- Allow individual icon classes to be trimmed -->
+  <assembly fullname="EasyAppDev.Blazor.Icons">
+    <!-- Do NOT preserve icon namespaces - only keep what's explicitly used -->
+    <type fullname="EasyAppDev.Blazor.Icons.Lucide.*" preserve="nothing" />
+    <type fullname="EasyAppDev.Blazor.Icons.Bootstrap.*" preserve="nothing" />
+    <type fullname="EasyAppDev.Blazor.Icons.MaterialDesign.*" preserve="nothing" />
+  </assembly>
+</linker>

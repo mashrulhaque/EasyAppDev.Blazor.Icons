@@ -1,0 +1,26 @@
+<Project>
+  <!-- Auto-configure the usage-based icon source generator when package is installed -->
+
+  <!-- Reference the source generator automatically -->
+  <ItemGroup>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)../analyzers/dotnet/cs/EasyAppDev.Blazor.Icons.SourceGenerator.dll"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false"
+                      Condition="Exists('$(MSBuildThisFileDirectory)../analyzers/dotnet/cs/EasyAppDev.Blazor.Icons.SourceGenerator.dll')" />
+  </ItemGroup>
+
+  <!-- Auto-include Razor and C# files as AdditionalFiles for the source generator -->
+  <ItemGroup>
+    <AdditionalFiles Include="$(MSBuildProjectDirectory)/**/*.razor"
+                     Exclude="$(MSBuildProjectDirectory)/bin/**/*.razor;$(MSBuildProjectDirectory)/obj/**/*.razor" />
+    <AdditionalFiles Include="$(MSBuildProjectDirectory)/**/*.cs"
+                     Exclude="$(MSBuildProjectDirectory)/bin/**/*.cs;$(MSBuildProjectDirectory)/obj/**/*.cs" />
+  </ItemGroup>
+
+  <!-- Include IconData files from the package -->
+  <ItemGroup>
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)../contentFiles/any/any/IconData/**/*.cs"
+                     Condition="Exists('$(MSBuildThisFileDirectory)../contentFiles/any/any/IconData')" />
+  </ItemGroup>
+
+</Project>
