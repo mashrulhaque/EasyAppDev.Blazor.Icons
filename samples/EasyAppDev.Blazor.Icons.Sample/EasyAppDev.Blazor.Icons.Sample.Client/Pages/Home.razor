@@ -1,0 +1,136 @@
+﻿@page "/"
+@using EasyAppDev.Blazor.Icons.Lucide
+@rendermode InteractiveWebAssembly
+
+
+<PageTitle>EasyAppDev.Blazor.Icons Demo</PageTitle>
+
+<style>
+    .icon-demo {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+    .icon-card {
+        padding: 1.5rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        text-align: center;
+        min-width: 150px;
+    }
+    .icon-container {
+        font-size: 48px;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+    }
+    .icon-container svg {
+        width: 48px;
+        height: 48px;
+    }
+    .red { color: #e74c3c; }
+    .blue { color: #3498db; }
+    .green { color: #2ecc71; }
+    .orange { color: #e67e22; }
+    .purple { color: #9b59b6; }
+</style>
+
+<h1>EasyAppDev.Blazor.Icons Demo</h1>
+
+<p>A fully trimmable Blazor icon library with support for multiple icon sets.</p>
+
+<hr style="margin: 3rem 0; border: none; border-top: 2px solid #eee;" />
+
+<h2>Lucide Icons (Embedded - No HTTP Calls)</h2>
+<div class="icon-demo">
+    <div class="icon-card">
+        <div class="icon-container red">
+            <Activity />
+
+        </div>
+        <code>&lt;Activity /&gt;</code>
+        <p>Activity Icon</p>
+    </div>
+
+    <div class="icon-card">
+        <div class="icon-container blue">
+            <Airplay />
+        </div>
+        <code>&lt;Airplay /&gt;</code>
+        <p>Airplay Icon</p>
+    </div>
+
+    <div class="icon-card">
+        <div class="icon-container green">
+            <AlarmClock />
+        </div>
+        <code>&lt;AlarmClock /&gt;</code>
+        <p>Alarm Clock Icon</p>
+    </div>
+
+    <div class="icon-card">
+        <div class="icon-container purple">
+            <Album />
+        </div>
+        <code>&lt;Album /&gt;</code>
+        <p>Album Icon</p>
+    </div>
+
+    <div class="icon-card">
+        <div class="icon-container orange">
+            <AlignCenter />
+        </div>
+        <code>&lt;AlignCenter /&gt;</code>
+        <p>Align Center Icon</p>
+    </div>
+</div>
+
+<!-- Bootstrap and Material Design icons temporarily disabled for faster dev builds -->
+<!-- Uncomment icon libraries in generate-trimmable-icons.py and regenerate to enable -->
+
+<h2>Styled Icons</h2>
+<p>Icons can be styled directly using inline styles or passed attributes:</p>
+<div class="icon-demo">
+    <div class="icon-card">
+        <div class="icon-container">
+            <LucideActivity style="color: #e74c3c; width: 48px; height: 48px;" />
+        </div>
+        <code>style="color: red; width: 48px;"</code>
+    </div>
+
+    <div class="icon-card">
+        <div class="icon-container">
+            <LucideAirplay style="color: #3498db; width: 48px; height: 48px;" />
+        </div>
+        <code>style="color: blue; width: 48px;"</code>
+    </div>
+
+    <div class="icon-card">
+        <div class="icon-container">
+            <LucideAlbum style="color: pink; width: 48px; height: 48px;" />
+        </div>
+        <code>style="color: pink; width: 48px;"</code>
+    </div>
+</div>
+
+<h2>Icon Counts (Development Mode)</h2>
+<ul>
+    <li><strong>Lucide Icons:</strong> 1,539 icons (currently enabled)</li>
+    <li><strong>Note:</strong> Bootstrap and Material Design icons are disabled for faster development builds</li>
+    <li><strong>Full library:</strong> 11,064 total icons available when all libraries are enabled</li>
+</ul>
+
+<h2>Features</h2>
+<ul>
+    <li><strong>Fully Embedded:</strong> SVG content embedded in compiled code - No HTTP calls!</li>
+    <li><strong>Fully Trimmable:</strong> Only icons you use are included in the published output</li>
+    <li><strong>Fast Builds:</strong> 1-5 second build times with 11,000+ icons</li>
+    <li><strong>Type-Safe:</strong> Full IntelliSense support</li>
+    <li><strong>CSS Controllable:</strong> Style icons with standard CSS properties</li>
+    <li><strong>Multiple Icon Sets:</strong> Lucide, Material Design, Bootstrap (11,064 total)</li>
+    <li><strong>Zero Runtime Overhead:</strong> Build-time generation, no reflection</li>
+    <li><strong>Zero Network Requests:</strong> No HttpClient or wwwroot files needed</li>
+</ul>

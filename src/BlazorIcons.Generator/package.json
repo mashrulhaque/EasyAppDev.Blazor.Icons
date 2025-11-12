@@ -1,0 +1,13 @@
+{
+  "name": "blazor-icons-generator",
+  "version": "1.0.0",
+  "description": "Icon source downloader for EasyAppDev.Blazor.Icons",
+  "scripts": {
+    "download-icons": "node download-icons.js"
+  },
+  "dependencies": {
+    "lucide-static": "^0.460.0",
+    "bootstrap-icons": "^1.11.3",
+    "@mdi/svg": "^7.4.47"
+  }
+}
