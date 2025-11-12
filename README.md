@@ -93,25 +93,37 @@ After publishing with trimming enabled, the actual size depends on how many icon
 
 ### Basic Usage
 
-No configuration needed! Just reference icons directly:
+No configuration needed! Just reference icons directly. Here are common patterns:
 
+**Single icon library** (simplest):
 ```razor
 @page "/"
 @using EasyAppDev.Blazor.Icons.Lucide
-@using EasyAppDev.Blazor.Icons.Bootstrap
+
+<h1>My Page</h1>
+
+<Activity />
+<Airplay />
+<Home />
+```
+
+**Multiple icon libraries** (using namespace aliases to avoid conflicts):
+```razor
+@page "/"
+@using Lucide = EasyAppDev.Blazor.Icons.Lucide
+@using Bootstrap = EasyAppDev.Blazor.Icons.Bootstrap
 
 <h1>My Page</h1>
 
 <!-- Lucide icons -->
-<Activity />
-<Airplay />
-<Home />
+<Lucide.Activity />
+<Lucide.Airplay />
+<Lucide.Home />
 
 <!-- Bootstrap icons -->
-@using EasyAppDev.Blazor.Icons.Bootstrap
-<House />
-<Person />
-<Gear />
+<Bootstrap.House />
+<Bootstrap.Person />
+<Bootstrap.Gear />
 ```
 
 ### Styling Icons
@@ -121,64 +133,74 @@ Icons support all standard CSS styling. Icons inherit size and color from their 
 #### Size Control
 
 ```razor
+@using EasyAppDev.Blazor.Icons.Lucide
+
 <!-- Using width and height -->
-<LucideActivity style="width: 24px; height: 24px;" />
-<LucideActivity style="width: 32px; height: 32px;" />
-<LucideActivity style="width: 48px; height: 48px;" />
+<Activity style="width: 24px; height: 24px;" />
+<Activity style="width: 32px; height: 32px;" />
+<Activity style="width: 48px; height: 48px;" />
 
 <!-- Using font-size (if icon container doesn't specify width/height) -->
 <div style="font-size: 24px;">
-    <LucideActivity />
+    <Activity />
 </div>
 
 <!-- Using CSS classes -->
-<LucideHome class="icon-sm" />      <!-- small -->
-<LucideHome class="icon-md" />      <!-- medium -->
-<LucideHome class="icon-lg" />      <!-- large -->
+<Home class="icon-sm" />      <!-- small -->
+<Home class="icon-md" />      <!-- medium -->
+<Home class="icon-lg" />      <!-- large -->
 ```
 
 #### Color Control
 
 ```razor
+@using EasyAppDev.Blazor.Icons.Lucide
+
 <!-- Inline color -->
-<LucideActivity style="color: red;" />
-<LucideActivity style="color: #00ff00;" />
+<Activity style="color: red;" />
+<Activity style="color: #00ff00;" />
 
 <!-- Using CSS classes -->
-<LucideActivity class="text-primary" />
-<LucideActivity class="text-danger" />
+<Activity class="text-primary" />
+<Activity class="text-danger" />
 
 <!-- From parent element -->
 <div style="color: blue;">
-    <LucideActivity />
+    <Activity />
 </div>
 ```
 
 #### Icon Set Specific Styling
 
 ```razor
+@using EasyAppDev.Blazor.Icons.Lucide
+@using Bootstrap = EasyAppDev.Blazor.Icons.Bootstrap
+@using MaterialDesign = EasyAppDev.Blazor.Icons.MaterialDesign
+
 <!-- Lucide (outline icons) - control stroke width -->
-<LucideActivity style="color: currentColor; stroke-width: 2;" />
-<LucideActivity style="color: currentColor; stroke-width: 1.5;" />
+<Activity style="color: currentColor; stroke-width: 2;" />
+<Activity style="color: currentColor; stroke-width: 1.5;" />
 
 <!-- Bootstrap & Material Design (filled icons) -->
-<BootstrapActivity style="color: currentColor;" />
-<MaterialDesignActivity style="color: currentColor;" />
+<Bootstrap.Activity style="color: currentColor;" />
+<MaterialDesign.Activity style="color: currentColor;" />
 ```
 
 #### Animations & Effects
 
 ```razor
+@using EasyAppDev.Blazor.Icons.Lucide
+
 <!-- Spinning animation -->
 <div style="animation: spin 1s linear infinite;">
-    <LucideLoader />
+    <Loader />
 </div>
 
 <!-- Hover effects -->
-<LucideActivity class="icon-hover" />
+<Activity class="icon-hover" />
 
 <!-- Fade in/out -->
-<LucideActivity style="opacity: 0.7; transition: opacity 0.3s;" />
+<Activity style="opacity: 0.7; transition: opacity 0.3s;" />
 ```
 
 CSS for animations:
@@ -207,8 +229,10 @@ CSS for animations:
 #### Responsive Styling
 
 ```razor
+@using EasyAppDev.Blazor.Icons.Lucide
+
 <!-- Mobile and desktop sizes -->
-<LucideActivity class="icon-responsive" />
+<Activity class="icon-responsive" />
 ```
 
 ```css
@@ -243,7 +267,9 @@ CSS for animations:
 ```
 
 ```razor
-<LucideActivity class="icon-styled" />
+@using EasyAppDev.Blazor.Icons.Lucide
+
+<Activity class="icon-styled" />
 ```
 
 ### Accessibility
@@ -269,6 +295,69 @@ CSS for animations:
 - **Material Design** (~7,500 icons): Google's Material Design icons
   - Namespace: `EasyAppDev.Blazor.Icons.MaterialDesign`
   - Defaults: Filled style with `currentColor`
+
+### Handling Naming Conflicts
+
+Icon names are isolated within their own namespaces, so icons with the same name across different libraries don't conflict. For example, many icon sets include a `Home` or `Activity` icon:
+
+#### Using Single Library
+
+If you use only one icon library, there are no conflicts:
+
+```razor
+@using EasyAppDev.Blazor.Icons.Lucide
+
+<!-- This works - no ambiguity -->
+<Home />
+<Activity />
+```
+
+#### Using Multiple Libraries
+
+When using multiple icon libraries, you have two options:
+
+**Option 1: Use fully qualified names**
+
+```razor
+@using EasyAppDev.Blazor.Icons.Lucide
+@using EasyAppDev.Blazor.Icons.Bootstrap
+
+<!-- Fully qualified to avoid ambiguity -->
+<EasyAppDev.Blazor.Icons.Lucide.Home />
+<EasyAppDev.Blazor.Icons.Bootstrap.House />
+```
+
+**Option 2: Use namespace aliases**
+
+```razor
+@using Lucide = EasyAppDev.Blazor.Icons.Lucide
+@using Bootstrap = EasyAppDev.Blazor.Icons.Bootstrap
+
+<!-- Clear and concise with aliases -->
+<Lucide.Home />
+<Bootstrap.House />
+```
+
+**Option 3: Mix namespaced and unnamespaced usage**
+
+```razor
+@using EasyAppDev.Blazor.Icons.Lucide
+@using EasyAppDev.Blazor.Icons.Bootstrap
+
+<!-- Lucide icons with short names (after using) -->
+<Home />
+<Activity />
+
+<!-- Bootstrap icons with fully qualified names -->
+<EasyAppDev.Blazor.Icons.Bootstrap.House />
+<EasyAppDev.Blazor.Icons.Bootstrap.Person />
+```
+
+#### Best Practices
+
+- **For single icon library projects**: Use `@using` for clean, concise code
+- **For multi-library projects**: Use namespace aliases to keep code readable while avoiding conflicts
+- **For shared components**: Use fully qualified names for clarity and maintainability
 
 ## Building from Source
 

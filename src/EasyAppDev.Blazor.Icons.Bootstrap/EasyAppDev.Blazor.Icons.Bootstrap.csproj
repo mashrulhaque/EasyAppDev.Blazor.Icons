@@ -12,15 +12,16 @@
 
     <!-- Package Information -->
     <PackageId>EasyAppDev.Blazor.Icons.Bootstrap</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Mashrul Haque</Authors>
     <Company>EasyAppDev</Company>
     <Description>Bootstrap icon library for Blazor - 2,000+ SVG icons with true trimming support. Only icons you reference are included in published output.</Description>
     <PackageTags>blazor;icons;svg;trimmable;bootstrap;embedded</PackageTags>
-    <RepositoryUrl>https://easyappdev.com</RepositoryUrl>
-    <PackageProjectUrl>https://easyappdev.com</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mashrulhaque/EasyAppDev.Blazor.Icons</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/mashrulhaque/EasyAppDev.Blazor.Icons</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Contact>info@easyappdev.com</Contact>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,6 +30,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>
