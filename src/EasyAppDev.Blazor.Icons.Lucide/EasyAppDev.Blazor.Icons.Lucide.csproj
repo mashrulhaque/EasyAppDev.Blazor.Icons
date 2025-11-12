@@ -12,7 +12,7 @@
 
     <!-- Package Information -->
     <PackageId>EasyAppDev.Blazor.Icons.Lucide</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Mashrul Haque</Authors>
     <Company>EasyAppDev</Company>
     <Description>Lucide icon library for Blazor - 1,500+ SVG icons with true trimming support. Only icons you reference are included in published output.</Description>
@@ -22,6 +22,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Contact>info@easyappdev.com</Contact>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon-lucide.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,6 +35,7 @@
 
   <ItemGroup>
     <None Include="../../README.md" Pack="true" PackagePath="\"/>
+    <None Include="../../icon-lucide.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>
