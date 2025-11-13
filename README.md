@@ -49,9 +49,9 @@ Current versions of available packages:
 
 | Package | Version | NuGet | Icons | Development Size | Published Size (Trimmed) |
 |---------|---------|-------|-------|-----------------|-------------------------|
-| `EasyAppDev.Blazor.Icons.Lucide` | 1.0.3 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Lucide/) | ~1,500 | ~1.5MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.Bootstrap` | 1.0.3 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Bootstrap/) | ~2,000 | ~1.9MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.MaterialDesign` | 1.0.3 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.MaterialDesign/) | ~7,400 | ~5.7MB | **~2-5KB** ✨ |
+| `EasyAppDev.Blazor.Icons.Lucide` | 1.0.4 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Lucide/) | ~1,500 | ~1.5MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.Bootstrap` | 1.0.4 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Bootstrap/) | ~2,000 | ~1.9MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.MaterialDesign` | 1.0.4 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.MaterialDesign/) | ~7,400 | ~5.7MB | **~2-5KB** ✨ |
 
 **Trimming is extremely effective!** With proper syntax (see warning below), published apps include only referenced icons. Typical apps using 50-100 icons from all three libraries result in only **~6KB total overhead** (99.96% reduction).
 
