@@ -1,21 +1,63 @@
 #!/usr/bin/env node
 
+/**
+ * BlazorIcons - Icon Source Downloader
+ *
+ * This script downloads icon SVG files from NPM packages and prepares them
+ * for component generation.
+ *
+ * USAGE:
+ *   node download-icons.js
+ *
+ * PREREQUISITES:
+ *   - Node.js installed
+ *   - Run 'npm install' first to install dependencies
+ *
+ * WHAT IT DOES:
+ *   1. Creates icon-sources/ directory structure
+ *   2. Downloads Lucide icons from lucide-static package
+ *   3. Downloads Bootstrap icons from bootstrap-icons package
+ *   4. Downloads Material Design icons from @mdi/svg package
+ *   5. Copies SVG files to icon-sources/{library}/ folders
+ *
+ * AFTER RUNNING:
+ *   Run 'python3 generate-components.py' to generate Blazor components
+ *
+ * NOTE:
+ *   Icon source files are NOT committed to git (see .gitignore).
+ *   New contributors must run this script first to download icon sources.
+ */
+
 const fs = require('fs');
 const path = require('path');
 
 console.log('\x1b[36m%s\x1b[0m', 'BlazorIcons - Downloading Icons from NPM Packages');
 console.log('\x1b[36m%s\x1b[0m', '=================================================\n');
 
+// Check if node_modules exists
+const nodeModulesPath = path.join(__dirname, 'node_modules');
+if (!fs.existsSync(nodeModulesPath)) {
+    console.log('\x1b[31m%s\x1b[0m', '\nERROR: node_modules not found!');
+    console.log('\x1b[33m%s\x1b[0m', '\nPlease run: npm install');
+    console.log('\x1b[33m%s\x1b[0m', 'This will install the required icon packages.\n');
+    process.exit(1);
+}
+
 // Create output directories
 const iconSourcesDir = path.join(__dirname, 'icon-sources');
 const dirs = ['lucide', 'bootstrap', 'material-design', 'fontawesome'];
 
+console.log('\x1b[33m%s\x1b[0m', 'Creating output directories...');
 dirs.forEach(dir => {
     const fullPath = path.join(iconSourcesDir, dir);
     if (!fs.existsSync(fullPath)) {
         fs.mkdirSync(fullPath, { recursive: true });
+        console.log('\x1b[32m%s\x1b[0m', `  ✓ Created ${dir}/`);
+    } else {
+        console.log('\x1b[90m%s\x1b[0m', `  - ${dir}/ already exists`);
     }
 });
+console.log();
 
 // Copy Lucide icons
 console.log('\x1b[33m%s\x1b[0m', 'Copying Lucide icons...');

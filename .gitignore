@@ -48,6 +48,10 @@ packages/
 # Generated icon components (regenerate using generator scripts)
 src/BlazorIcons/Components/Generated/**/*.razor
 
+# Icon sources downloaded on-demand via download-icons.js
+# Run 'node src/BlazorIcons.Generator/download-icons.js' to download
+src/BlazorIcons.Generator/icon-sources/
+
 # OS specific
 .DS_Store
 Thumbs.db

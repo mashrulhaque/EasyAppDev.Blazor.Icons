@@ -10,6 +10,15 @@
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimMode>link</TrimMode>
 
+    <!-- SourceLink Configuration -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugType>embedded</DebugType>
+
+    <!-- Documentation -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+
     <!-- Package Information -->
     <PackageId>EasyAppDev.Blazor.Icons.Lucide</PackageId>
     <Version>1.0.2</Version>
@@ -23,6 +32,20 @@
     <Contact>info@easyappdev.com</Contact>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon-lucide.png</PackageIcon>
+    <PackageReleaseNotes>
+Version 1.0.2:
+- Added package icon for better NuGet visibility
+- Improved package metadata and documentation
+- Enhanced trimming support with sealed component classes
+- Updated to latest Lucide icon sources
+
+Version 1.0.1:
+- Initial public release
+- 1,500+ Lucide SVG icons with full trimming support
+- Individual sealed ComponentBase classes for each icon
+- Zero runtime overhead with embedded SVG content
+- Full IntelliSense support for all icons
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

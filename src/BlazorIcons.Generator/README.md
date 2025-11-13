@@ -2,6 +2,40 @@
 
 Generate Blazor icon components from SVG files in seconds.
 
+---
+
+## 🚀 Initial Setup - REQUIRED FOR NEW CONTRIBUTORS
+
+**IMPORTANT:** Before generating icons, you must download the icon sources first!
+
+### Step 1: Install Node.js Dependencies
+
+```bash
+cd src/BlazorIcons.Generator
+npm install
+```
+
+This installs the NPM packages that contain the icon SVG files.
+
+### Step 2: Download Icon Sources
+
+```bash
+node download-icons.js
+```
+
+This downloads ~11,000 SVG files from NPM packages:
+- **Lucide** (~1,500 icons)
+- **Bootstrap** (~2,000 icons)
+- **Material Design** (~7,400 icons)
+
+**Note:** Icon sources are NOT committed to git (see .gitignore). All contributors must run this step.
+
+### Step 3: You're Ready!
+
+Now you can generate components using the instructions below.
+
+---
+
 ## ⚡ Quick Start
 
 ### 1️⃣ Add Your SVG Files

@@ -2,18 +2,118 @@
 @rendermode InteractiveAuto
 @using EasyAppDev.Blazor.Icons.Lucide
 
-<title>Counter</title>
+<PageTitle>Counter - EasyAppDev.Blazor.Icons</PageTitle>
 
-<h1>Counter</h1>
+<style>
+    .counter-demo {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .counter-display {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 3rem;
+        border-radius: 12px;
+        text-align: center;
+        margin: 2rem 0;
+    }
+    .counter-number {
+        font-size: 4rem;
+        font-weight: bold;
+        margin: 1rem 0;
+    }
+    .icon-row {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+    .animated-icon {
+        animation: pulse 1s ease-in-out;
+    }
+    @@keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+    }
+    .btn-custom {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0 auto;
+        transition: all 0.3s ease;
+    }
+    .btn-custom:hover {
+        background: #764ba2;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+</style>
 
-<p role="status">Current count: @currentCount</p>
+<div class="counter-demo">
+    <h1>Counter Demo</h1>
+    <p>Interactive counter showcasing icon animations and styling</p>
 
-<div class="icons-demo" style="display:flex; gap:16px; align-items:center;">
-    @* Source generator creates these icon components at compile-time *@
-    <Activity style="width: 48px; height: 48px; color: red;" />
+    <div class="counter-display">
+        <div>Current Count</div>
+        <div class="counter-number">@currentCount</div>
+
+        <div class="icon-row">
+            @for (int i = 0; i < Math.Min(currentCount, 10); i++)
+            {
+                <Star style="width: 24px; height: 24px;" class="@(i == currentCount - 1 ? "animated-icon" : "")" />
+            }
+            @if (currentCount > 10)
+            {
+                <span style="font-size: 1.5rem;">+@(currentCount - 10)</span>
+            }
+        </div>
+    </div>
+
+    <button class="btn-custom" @onclick="IncrementCount">
+        <Plus style="width: 24px; height: 24px;" />
+        <span>Increment Counter</span>
+    </button>
+
+    <div style="text-align: center; margin-top: 2rem;">
+        <p>
+            <small>
+                Icons update dynamically with each click.
+                Notice how the newest star animates!
+            </small>
+        </p>
+    </div>
+
+    <hr style="margin: 3rem 0; border: none; border-top: 2px solid #eee;" />
+
+    <h2>Icon Variations</h2>
+    <p>Different sizes and colors of the same icon component:</p>
+
+    <div style="display: flex; justify-content: space-around; align-items: center; margin: 2rem 0;">
+        <div style="text-align: center;">
+            <Star style="width: 16px; height: 16px; color: #ffc107;" />
+            <br/><small>16px</small>
+        </div>
+        <div style="text-align: center;">
+            <Star style="width: 24px; height: 24px; color: #ffc107;" />
+            <br/><small>24px</small>
+        </div>
+        <div style="text-align: center;">
+            <Star style="width: 32px; height: 32px; color: #ffc107;" />
+            <br/><small>32px</small>
+        </div>
+        <div style="text-align: center;">
+            <Star style="width: 48px; height: 48px; color: #ffc107;" />
+            <br/><small>48px</small>
+        </div>
+    </div>
 </div>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
     private int currentCount = 0;

@@ -1,6 +1,11 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using EasyAppDev.Blazor.Icons.Lucide
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">EasyAppDev.Blazor.Icons.Sample</a>
+        <a class="navbar-brand" href="">
+            <Package style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 8px;" />
+            EasyAppDev.Blazor.Icons
+        </a>
     </div>
 </div>
 
@@ -10,19 +15,29 @@
     <nav class="nav flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                <Home style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 8px;" aria-hidden="true" />
+                Home
             </NavLink>
         </div>
 
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+                <Plus style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 8px;" aria-hidden="true" />
+                Counter
             </NavLink>
         </div>
 
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+                <Cloud style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 8px;" aria-hidden="true" />
+                Weather
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="test-generated">
+                <Sparkles style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 8px;" aria-hidden="true" />
+                Icon Gallery
             </NavLink>
         </div>
     </nav>

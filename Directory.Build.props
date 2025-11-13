@@ -1,0 +1,64 @@
+<Project>
+
+  <PropertyGroup>
+    <!-- Central Version Management -->
+    <Version>1.0.2</Version>
+
+    <!-- Common Authors and Company -->
+    <Authors>Mashrul Haque</Authors>
+    <Company>EasyAppDev</Company>
+
+    <!-- Repository Information -->
+    <RepositoryUrl>https://github.com/mashrulhaque/EasyAppDev.Blazor.Icons</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/mashrulhaque/EasyAppDev.Blazor.Icons</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <!-- License -->
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <!-- Contact Information -->
+    <Contact>info@easyappdev.com</Contact>
+
+    <!-- Common Language Features -->
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Build Configuration -->
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+
+    <!-- Enable .NET Analyzers -->
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+
+    <!-- Enforce code style in build -->
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+
+    <!-- Source Link Support -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <!-- Deterministic Build -->
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+
+    <!-- NuGet Package Settings -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn> <!-- Disable XML documentation warnings -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Roslyn Code Analyzers -->
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+    <!-- Source Link Package Reference -->
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" Condition="'$(IsPackable)' != 'false'" />
+  </ItemGroup>
+
+</Project>

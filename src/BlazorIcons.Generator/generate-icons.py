@@ -12,7 +12,9 @@ included in published output.
 
 import os
 import re
+import sys
 from pathlib import Path
+from typing import Dict, List, Optional, Tuple
 
 # Define icon sets with their configurations
 ICON_SETS = {
@@ -42,20 +44,80 @@ ICON_SETS = {
     }
 }
 
-def convert_to_valid_identifier(name):
+# Template for class header
+CLASS_HEADER_TEMPLATE = """namespace {namespace};
+
+/// <summary>
+/// Static icon data for {class_name}
+/// </summary>
+public static class {class_name}
+{{
+    public const string ViewBox = "{viewbox}";
+    public const string Fill = "{fill}";
+{optional_attributes}
+    /// <summary>
+    /// Icon SVG path data
+    /// </summary>
+    public static class Icons
+    {{
+"""
+
+# Template for class footer
+CLASS_FOOTER_TEMPLATE = """    }
+}
+"""
+
+
+def check_python_version():
+    """Ensure Python 3.7+ is being used"""
+    if sys.version_info < (3, 7):
+        print("ERROR: Python 3.7 or higher is required")
+        print(f"Current version: {sys.version}")
+        sys.exit(1)
+
+
+def validate_icon_name(name: str) -> Optional[str]:
+    """
+    Validate icon name
+
+    Returns error message if invalid, None if valid
+    """
+    if not name:
+        return "Icon name is empty"
+
+    if len(name) > 100:
+        return f"Icon name too long: {name}"
+
+    # Check for invalid characters
+    if not re.match(r'^[a-zA-Z0-9_-]+$', name):
+        return f"Icon name contains invalid characters: {name}"
+
+    return None
+
+
+def convert_to_valid_identifier(name: str) -> str:
     """Convert filename to valid C# identifier"""
     name = Path(name).stem
     parts = name.split('-')
     result = ''.join(part.capitalize() for part in parts)
-    if result[0].isdigit():
+    if result and result[0].isdigit():
         result = f"_{result}"
     return result
 
-def extract_svg_content(svg_path):
-    """Extract inner SVG content"""
+
+def extract_svg_content(svg_path: Path) -> Optional[str]:
+    """Extract inner SVG content from SVG file"""
     try:
+        if not svg_path.exists():
+            print(f"ERROR: SVG file not found: {svg_path}")
+            return None
+
         with open(svg_path, 'r', encoding='utf-8') as f:
             content = f.read()
+
+        if not content.strip():
+            print(f"WARNING: Empty SVG file: {svg_path}")
+            return None
 
         pattern = r'<svg[^>]*>(.*?)</svg>'
         match = re.search(pattern, content, re.DOTALL)
@@ -67,96 +129,214 @@ def extract_svg_content(svg_path):
             # Clean up whitespace
             inner_content = re.sub(r'\s+', ' ', inner_content)
             return inner_content.strip()
+        else:
+            print(f"WARNING: No SVG content found in {svg_path}")
+            return None
+    except UnicodeDecodeError as e:
+        print(f"ERROR: Failed to decode {svg_path}: {e}")
         return None
     except Exception as e:
-        print(f"Warning: Failed to parse {svg_path}: {e}")
+        print(f"ERROR: Failed to parse {svg_path}: {e}")
         return None
 
-def generate_icon_class(icon_set, config, source_dir, output_dir):
-    """Generate a static class with all icons"""
+
+def generate_optional_attributes(config: Dict[str, Optional[str]]) -> str:
+    """Generate optional attribute declarations"""
+    lines = []
+
+    if config.get('stroke'):
+        lines.append(f'    public const string Stroke = "{config["stroke"]}";')
+
+    if config.get('stroke_width'):
+        lines.append(f'    public const string StrokeWidth = "{config["stroke_width"]}";')
+
+    if config.get('stroke_linecap'):
+        lines.append(f'    public const string StrokeLinecap = "{config["stroke_linecap"]}";')
+
+    if config.get('stroke_linejoin'):
+        lines.append(f'    public const string StrokeLinejoin = "{config["stroke_linejoin"]}";')
+
+    return '\n'.join(lines)
+
+
+def validate_generated_code(code: str) -> Optional[str]:
+    """
+    Basic validation of generated C# code
+
+    Returns error message if invalid, None if valid
+    """
+    # Check for basic C# syntax elements
+    if 'namespace' not in code:
+        return "Missing namespace declaration"
+
+    if 'class' not in code:
+        return "Missing class declaration"
+
+    # Check for balanced braces
+    if code.count('{') != code.count('}'):
+        return "Unbalanced braces in generated code"
+
+    return None
+
+
+def generate_icon_class(
+    icon_set: str,
+    config: Dict[str, Optional[str]],
+    source_dir: Path,
+    output_dir: Path
+) -> Tuple[int, int]:
+    """
+    Generate a static class with all icons
+
+    Returns tuple of (processed_count, error_count)
+    """
     source_folder = source_dir / icon_set
     output_file = output_dir / f"{config['class_name']}.cs"
 
     print(f"\nProcessing {icon_set} icons...")
 
+    # Validate directories
     if not source_folder.exists():
-        print(f"Warning: Source folder not found: {source_folder} (skipping)")
-        return
+        print(f"ERROR: Source folder not found: {source_folder}")
+        return 0, 1
 
     # Get all SVG files
     svg_files = sorted(source_folder.glob("*.svg"))
 
     if not svg_files:
-        print(f"Warning: No SVG files found in {source_folder}")
-        return
+        print(f"WARNING: No SVG files found in {source_folder}")
+        return 0, 0
 
-    # Start building the class
-    lines = [
-        f"namespace {config['namespace']};",
-        "",
-        "/// <summary>",
-        f"/// Static icon data for {config['class_name']}",
-        "/// </summary>",
-        f"public static class {config['class_name']}",
-        "{",
-        f"    public const string ViewBox = \"{config['viewbox']}\";",
-        f"    public const string Fill = \"{config['fill']}\";",
-    ]
+    total_files = len(svg_files)
+    print(f"Found {total_files} SVG files")
 
-    if config.get('stroke'):
-        lines.append(f"    public const string Stroke = \"{config['stroke']}\";")
-    if config.get('stroke_width'):
-        lines.append(f"    public const string StrokeWidth = \"{config['stroke_width']}\";")
-    if config.get('stroke_linecap'):
-        lines.append(f"    public const string StrokeLinecap = \"{config['stroke_linecap']}\";")
-    if config.get('stroke_linejoin'):
-        lines.append(f"    public const string StrokeLinejoin = \"{config['stroke_linejoin']}\";")
+    # Build the class using template
+    lines = []
 
-    lines.append("")
-    lines.append("    /// <summary>")
-    lines.append("    /// Icon SVG path data")
-    lines.append("    /// </summary>")
-    lines.append("    public static class Icons")
-    lines.append("    {")
+    # Add header
+    optional_attrs = generate_optional_attributes(config)
+    header = CLASS_HEADER_TEMPLATE.format(
+        namespace=config['namespace'],
+        class_name=config['class_name'],
+        viewbox=config['viewbox'],
+        fill=config['fill'],
+        optional_attributes=optional_attrs + '\n' if optional_attrs else ''
+    )
+    lines.append(header)
 
     # Add each icon as a const string
     processed = 0
-    for svg_file in svg_files:
+    errors = 0
+    seen_names = set()
+
+    for idx, svg_file in enumerate(svg_files, 1):
+        # Show progress for large sets
+        if total_files > 100 and idx % 100 == 0:
+            print(f"  Progress: {idx}/{total_files} ({idx*100//total_files}%)")
+
+        # Validate icon name
+        validation_error = validate_icon_name(svg_file.stem)
+        if validation_error:
+            print(f"ERROR: {validation_error}")
+            errors += 1
+            continue
+
         icon_name = convert_to_valid_identifier(svg_file.name)
+
+        # Check for duplicate names
+        if icon_name in seen_names:
+            print(f"ERROR: Duplicate icon name: {icon_name}")
+            errors += 1
+            continue
+        seen_names.add(icon_name)
+
+        # Extract SVG content
         svg_content = extract_svg_content(svg_file)
 
         if svg_content:
-            lines.append(f"        public const string {icon_name} = \"{svg_content}\";")
+            lines.append(f'        public const string {icon_name} = "{svg_content}";')
             processed += 1
+        else:
+            errors += 1
 
-    lines.append("    }")
-    lines.append("}")
-    lines.append("")
+    # Add footer
+    lines.append(CLASS_FOOTER_TEMPLATE)
+
+    # Combine all lines
+    code = '\n'.join(lines)
+
+    # Validate generated code
+    validation_error = validate_generated_code(code)
+    if validation_error:
+        print(f"ERROR: Invalid generated code: {validation_error}")
+        return 0, errors + 1
 
     # Write to file
-    output_dir.mkdir(parents=True, exist_ok=True)
-    with open(output_file, 'w', encoding='utf-8') as f:
-        f.write('\n'.join(lines))
+    try:
+        output_dir.mkdir(parents=True, exist_ok=True)
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(code)
+    except Exception as e:
+        print(f"ERROR: Failed to write output file {output_file}: {e}")
+        return 0, errors + 1
 
     print(f"Generated {processed} icon constants in {output_file.name}")
-    return processed
+    if errors > 0:
+        print(f"WARNING: {errors} errors occurred during generation")
+
+    return processed, errors
+
 
 def main():
     """Main entry point"""
+    print("\033[1;36m" + "="*60 + "\033[0m")
     print("\033[1;36mEasyAppDev.Blazor.Icons - Icon Data Generator\033[0m")
-    print("\033[1;36m===============================================\033[0m")
+    print("\033[1;36m" + "="*60 + "\033[0m\n")
 
+    # Check Python version
+    check_python_version()
+
+    # Define paths
     source_dir = Path("./icon-sources")
     output_dir = Path("../EasyAppDev.Blazor.Icons/IconData")
 
-    total = 0
-    for icon_set, config in ICON_SETS.items():
-        count = generate_icon_class(icon_set, config, source_dir, output_dir)
-        if count:
-            total += count
+    # Validate source directory exists
+    if not source_dir.exists():
+        print(f"\033[1;31mERROR: Source directory not found: {source_dir.absolute()}\033[0m")
+        print("Please ensure you're running this script from the correct directory.")
+        sys.exit(1)
 
-    print(f"\n\033[1;32mGenerated {total} total icon constants\033[0m")
-    print("\033[1;36m\nNext: Build the project - source generator will create components\033[0m")
+    # Generate icon data for each icon set
+    total_processed = 0
+    total_errors = 0
+
+    for icon_set, config in ICON_SETS.items():
+        try:
+            processed, errors = generate_icon_class(icon_set, config, source_dir, output_dir)
+            total_processed += processed
+            total_errors += errors
+        except Exception as e:
+            print(f"\033[1;31mERROR: Failed to process {icon_set}: {e}\033[0m")
+            total_errors += 1
+
+    # Summary
+    print("\n" + "\033[1;36m" + "="*60 + "\033[0m")
+    if total_processed > 0:
+        print(f"\033[1;32m✓ Successfully generated {total_processed} total icon constants\033[0m")
+    else:
+        print(f"\033[1;31m✗ No icon constants were generated\033[0m")
+
+    if total_errors > 0:
+        print(f"\033[1;31m✗ {total_errors} error(s) occurred during generation\033[0m")
+
+    print("\033[1;36m" + "="*60 + "\033[0m")
+
+    if total_processed > 0:
+        print("\n\033[1;36mNext step:\033[0m Build the project to trigger source generation")
+        print("  Command: dotnet build")
+
+    sys.exit(0 if total_errors == 0 else 1)
+
 
 if __name__ == "__main__":
     main()

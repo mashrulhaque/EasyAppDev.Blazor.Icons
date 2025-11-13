@@ -13,9 +13,9 @@
 
     <!-- Package Information -->
     <PackageId>EasyAppDev.Blazor.Icons</PackageId>
-    <Version>1.0.0</Version>
-    <Authors>Your Name</Authors>
-    <Description>Meta-package for EasyAppDev Blazor icon libraries. Install specific icon libraries: EasyAppDev.Blazor.Icons.Lucide, EasyAppDev.Blazor.Icons.Bootstrap, or EasyAppDev.Blazor.Icons.MaterialDesign</Description>
+    <Version>1.0.2</Version>
+    <Authors>Mashrul Haque</Authors>
+    <Description>Base package for EasyAppDev Blazor icon libraries. This is a meta-package - install specific icon libraries instead: EasyAppDev.Blazor.Icons.Lucide, EasyAppDev.Blazor.Icons.Bootstrap, or EasyAppDev.Blazor.Icons.MaterialDesign. Provides 11,000+ fully trimmable SVG icons.</Description>
     <PackageTags>blazor;icons;svg;trimmable;lucide;material-design;bootstrap;embedded;no-runtime</PackageTags>
     <RepositoryUrl>https://github.com/mashrulhaque/EasyAppDev.Blazor.Icons</RepositoryUrl>
     <PackageProjectUrl>https://github.com/mashrulhaque/EasyAppDev.Blazor.Icons</PackageProjectUrl>

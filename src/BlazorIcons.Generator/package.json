@@ -1,10 +1,22 @@
 {
   "name": "blazor-icons-generator",
   "version": "1.0.0",
-  "description": "Icon source downloader for EasyAppDev.Blazor.Icons",
+  "description": "Icon source downloader and generator for EasyAppDev.Blazor.Icons. Downloads SVG icons from NPM packages and generates C# icon data files for source generation.",
   "scripts": {
-    "download-icons": "node download-icons.js"
+    "download-icons": "node download-icons.js",
+    "download": "node download-icons.js",
+    "generate": "python3 generate-icons.py",
+    "setup": "npm run download && npm run generate"
   },
+  "keywords": [
+    "blazor",
+    "icons",
+    "svg",
+    "lucide",
+    "bootstrap",
+    "material-design",
+    "generator"
+  ],
   "dependencies": {
     "lucide-static": "^0.460.0",
     "bootstrap-icons": "^1.11.3",

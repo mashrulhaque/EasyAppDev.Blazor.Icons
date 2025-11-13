@@ -1,0 +1,221 @@
+@page "/test-generated"
+@using EasyAppDev.Blazor.Icons.Lucide
+@using EasyAppDev.Blazor.Icons.Bootstrap
+@using EasyAppDev.Blazor.Icons.MaterialDesign
+
+<PageTitle>Icon Gallery - EasyAppDev.Blazor.Icons</PageTitle>
+
+<style>
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+    .gallery-item {
+        padding: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        text-align: center;
+        transition: all 0.2s ease;
+        background: white;
+        cursor: pointer;
+    }
+    .gallery-item:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transform: translateY(-2px);
+        border-color: #667eea;
+    }
+    .gallery-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 0.5rem;
+    }
+    .gallery-label {
+        font-size: 0.75rem;
+        color: #666;
+        word-break: break-word;
+    }
+    .library-tabs {
+        display: flex;
+        gap: 1rem;
+        margin: 2rem 0;
+        border-bottom: 2px solid #e0e0e0;
+    }
+    .tab-button {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 1rem;
+        color: #666;
+        border-bottom: 3px solid transparent;
+        transition: all 0.2s ease;
+    }
+    .tab-button.active {
+        color: #667eea;
+        border-bottom-color: #667eea;
+        font-weight: 600;
+    }
+    .tab-button:hover {
+        color: #667eea;
+    }
+</style>
+
+<h1>Icon Gallery</h1>
+<p>Browse icons from all three libraries. Click any icon to see its component name.</p>
+
+<div class="library-tabs">
+    <button class="tab-button @(selectedLibrary == "lucide" ? "active" : "")" @onclick="SelectLucide">
+        <EasyAppDev.Blazor.Icons.Lucide.Package style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" />
+        Lucide (1,539)
+    </button>
+    <button class="tab-button @(selectedLibrary == "bootstrap" ? "active" : "")" @onclick="SelectBootstrap">
+        <EasyAppDev.Blazor.Icons.Bootstrap.Bootstrap style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" />
+        Bootstrap (2,078)
+    </button>
+    <button class="tab-button @(selectedLibrary == "material" ? "active" : "")" @onclick="SelectMaterial">
+        <EasyAppDev.Blazor.Icons.MaterialDesign.Android style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" />
+        Material (7,447)
+    </button>
+</div>
+
+@if (selectedLibrary == "lucide")
+{
+    <h2>Lucide Icons Sample</h2>
+    <div class="gallery-grid">
+        @foreach (var icon in lucideIcons)
+        {
+            <div class="gallery-item" @onclick="() => ShowIconName(icon.name)">
+                @icon.component
+                <div class="gallery-label">@icon.name</div>
+            </div>
+        }
+    </div>
+}
+else if (selectedLibrary == "bootstrap")
+{
+    <h2>Bootstrap Icons Sample</h2>
+    <div class="gallery-grid">
+        @foreach (var icon in bootstrapIcons)
+        {
+            <div class="gallery-item" @onclick="() => ShowIconName(icon.name)">
+                @icon.component
+                <div class="gallery-label">@icon.name</div>
+            </div>
+        }
+    </div>
+}
+else if (selectedLibrary == "material")
+{
+    <h2>Material Design Icons Sample</h2>
+    <div class="gallery-grid">
+        @foreach (var icon in materialIcons)
+        {
+            <div class="gallery-item" @onclick="() => ShowIconName(icon.name)">
+                @icon.component
+                <div class="gallery-label">@icon.name</div>
+            </div>
+        }
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(selectedIconName))
+{
+    <div style="position: fixed; bottom: 20px; right: 20px; background: #667eea; color: white; padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        <strong>Component:</strong> &lt;@selectedIconName /&gt;
+    </div>
+}
+
+@code {
+    private string selectedLibrary = "lucide";
+    private string selectedIconName = "";
+
+    private List<(string name, RenderFragment component)> lucideIcons = new()
+    {
+        ("Activity", @<EasyAppDev.Blazor.Icons.Lucide.Activity class="gallery-icon" />),
+        ("Airplay", @<EasyAppDev.Blazor.Icons.Lucide.Airplay class="gallery-icon" />),
+        ("AlertCircle", @<EasyAppDev.Blazor.Icons.Lucide.AlertCircle class="gallery-icon" />),
+        ("Archive", @<EasyAppDev.Blazor.Icons.Lucide.Archive class="gallery-icon" />),
+        ("ArrowRight", @<EasyAppDev.Blazor.Icons.Lucide.ArrowRight class="gallery-icon" />),
+        ("Bell", @<EasyAppDev.Blazor.Icons.Lucide.Bell class="gallery-icon" />),
+        ("Calendar", @<EasyAppDev.Blazor.Icons.Lucide.Calendar class="gallery-icon" />),
+        ("Camera", @<EasyAppDev.Blazor.Icons.Lucide.Camera class="gallery-icon" />),
+        ("Check", @<EasyAppDev.Blazor.Icons.Lucide.Check class="gallery-icon" />),
+        ("Cloud", @<EasyAppDev.Blazor.Icons.Lucide.Cloud class="gallery-icon" />),
+        ("Code", @<EasyAppDev.Blazor.Icons.Lucide.Code class="gallery-icon" />),
+        ("Download", @<EasyAppDev.Blazor.Icons.Lucide.Download class="gallery-icon" />),
+        ("Eye", @<EasyAppDev.Blazor.Icons.Lucide.Eye class="gallery-icon" />),
+        ("File", @<EasyAppDev.Blazor.Icons.Lucide.File class="gallery-icon" />),
+        ("Folder", @<EasyAppDev.Blazor.Icons.Lucide.Folder class="gallery-icon" />),
+        ("Heart", @<EasyAppDev.Blazor.Icons.Lucide.Heart class="gallery-icon" />),
+        ("Home", @<EasyAppDev.Blazor.Icons.Lucide.Home class="gallery-icon" />),
+        ("Mail", @<EasyAppDev.Blazor.Icons.Lucide.Mail class="gallery-icon" />),
+        ("Menu", @<EasyAppDev.Blazor.Icons.Lucide.Menu class="gallery-icon" />),
+        ("Search", @<EasyAppDev.Blazor.Icons.Lucide.Search class="gallery-icon" />),
+        ("Settings", @<EasyAppDev.Blazor.Icons.Lucide.Settings class="gallery-icon" />),
+        ("Share", @<EasyAppDev.Blazor.Icons.Lucide.Share class="gallery-icon" />),
+        ("Star", @<EasyAppDev.Blazor.Icons.Lucide.Star class="gallery-icon" />),
+        ("Trash", @<EasyAppDev.Blazor.Icons.Lucide.Trash class="gallery-icon" />),
+        ("User", @<EasyAppDev.Blazor.Icons.Lucide.User class="gallery-icon" />),
+        ("Zap", @<EasyAppDev.Blazor.Icons.Lucide.Zap class="gallery-icon" />),
+    };
+
+    private List<(string name, RenderFragment component)> bootstrapIcons = new()
+    {
+        ("House", @<EasyAppDev.Blazor.Icons.Bootstrap.House class="gallery-icon" />),
+        ("Person", @<EasyAppDev.Blazor.Icons.Bootstrap.Person class="gallery-icon" />),
+        ("Gear", @<EasyAppDev.Blazor.Icons.Bootstrap.Gear class="gallery-icon" />),
+        ("Heart", @<EasyAppDev.Blazor.Icons.Bootstrap.Heart class="gallery-icon" />),
+        ("Star", @<EasyAppDev.Blazor.Icons.Bootstrap.Star class="gallery-icon" />),
+        ("Calendar", @<EasyAppDev.Blazor.Icons.Bootstrap.Calendar class="gallery-icon" />),
+        ("Clock", @<EasyAppDev.Blazor.Icons.Bootstrap.Clock class="gallery-icon" />),
+        ("Envelope", @<EasyAppDev.Blazor.Icons.Bootstrap.Envelope class="gallery-icon" />),
+        ("Folder", @<EasyAppDev.Blazor.Icons.Bootstrap.Folder class="gallery-icon" />),
+        ("Search", @<EasyAppDev.Blazor.Icons.Bootstrap.Search class="gallery-icon" />),
+        ("Download", @<EasyAppDev.Blazor.Icons.Bootstrap.Download class="gallery-icon" />),
+        ("Upload", @<EasyAppDev.Blazor.Icons.Bootstrap.Upload class="gallery-icon" />),
+        ("Trash", @<EasyAppDev.Blazor.Icons.Bootstrap.Trash class="gallery-icon" />),
+        ("PencilSquare", @<EasyAppDev.Blazor.Icons.Bootstrap.PencilSquare class="gallery-icon" />),
+        ("Check", @<EasyAppDev.Blazor.Icons.Bootstrap.Check class="gallery-icon" />),
+        ("X", @<EasyAppDev.Blazor.Icons.Bootstrap.X class="gallery-icon" />),
+        ("Plus", @<EasyAppDev.Blazor.Icons.Bootstrap.Plus class="gallery-icon" />),
+        ("Dash", @<EasyAppDev.Blazor.Icons.Bootstrap.Dash class="gallery-icon" />),
+        ("ChevronRight", @<EasyAppDev.Blazor.Icons.Bootstrap.ChevronRight class="gallery-icon" />),
+        ("ChevronLeft", @<EasyAppDev.Blazor.Icons.Bootstrap.ChevronLeft class="gallery-icon" />),
+    };
+
+    private List<(string name, RenderFragment component)> materialIcons = new()
+    {
+        ("Home", @<EasyAppDev.Blazor.Icons.MaterialDesign.Home class="gallery-icon" />),
+        ("Person", @<EasyAppDev.Blazor.Icons.MaterialDesign.Person class="gallery-icon" />),
+        ("Settings", @<EasyAppDev.Blazor.Icons.MaterialDesign.Settings class="gallery-icon" />),
+        ("Favorite", @<EasyAppDev.Blazor.Icons.MaterialDesign.Favorite class="gallery-icon" />),
+        ("Star", @<EasyAppDev.Blazor.Icons.MaterialDesign.Star class="gallery-icon" />),
+        ("Search", @<EasyAppDev.Blazor.Icons.MaterialDesign.Search class="gallery-icon" />),
+        ("Menu", @<EasyAppDev.Blazor.Icons.MaterialDesign.Menu class="gallery-icon" />),
+        ("Close", @<EasyAppDev.Blazor.Icons.MaterialDesign.Close class="gallery-icon" />),
+        ("Check", @<EasyAppDev.Blazor.Icons.MaterialDesign.Check class="gallery-icon" />),
+        ("ArrowForward", @<EasyAppDev.Blazor.Icons.MaterialDesign.ArrowForward class="gallery-icon" />),
+        ("ArrowBack", @<EasyAppDev.Blazor.Icons.MaterialDesign.ArrowBack class="gallery-icon" />),
+        ("Add", @<EasyAppDev.Blazor.Icons.MaterialDesign.Add class="gallery-icon" />),
+        ("Remove", @<EasyAppDev.Blazor.Icons.MaterialDesign.Remove class="gallery-icon" />),
+        ("Edit", @<EasyAppDev.Blazor.Icons.MaterialDesign.Edit class="gallery-icon" />),
+        ("Delete", @<EasyAppDev.Blazor.Icons.MaterialDesign.Delete class="gallery-icon" />),
+        ("Email", @<EasyAppDev.Blazor.Icons.MaterialDesign.Email class="gallery-icon" />),
+        ("Phone", @<EasyAppDev.Blazor.Icons.MaterialDesign.Phone class="gallery-icon" />),
+        ("Info", @<EasyAppDev.Blazor.Icons.MaterialDesign.Info class="gallery-icon" />),
+        ("Warning", @<EasyAppDev.Blazor.Icons.MaterialDesign.Warning class="gallery-icon" />),
+        ("Error", @<EasyAppDev.Blazor.Icons.MaterialDesign.Error class="gallery-icon" />),
+    };
+
+    private void ShowIconName(string name)
+    {
+        selectedIconName = name;
+        StateHasChanged();
+    }
+
+    private void SelectLucide() => selectedLibrary = "lucide";
+    private void SelectBootstrap() => selectedLibrary = "bootstrap";
+    private void SelectMaterial() => selectedLibrary = "material";
+}

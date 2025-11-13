@@ -11,6 +11,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.5" />
   </ItemGroup>
 
-
+  <ItemGroup>
+    <ProjectReference Include="../../../src/EasyAppDev.Blazor.Icons.Lucide/EasyAppDev.Blazor.Icons.Lucide.csproj" />
+    <ProjectReference Include="../../../src/EasyAppDev.Blazor.Icons.Bootstrap/EasyAppDev.Blazor.Icons.Bootstrap.csproj" />
+    <ProjectReference Include="../../../src/EasyAppDev.Blazor.Icons.MaterialDesign/EasyAppDev.Blazor.Icons.MaterialDesign.csproj" />
+  </ItemGroup>
 
 </Project>
