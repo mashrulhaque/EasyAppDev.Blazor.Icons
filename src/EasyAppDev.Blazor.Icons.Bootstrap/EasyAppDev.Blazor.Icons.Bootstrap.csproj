@@ -21,7 +21,6 @@
 
     <!-- Package Information -->
     <PackageId>EasyAppDev.Blazor.Icons.Bootstrap</PackageId>
-    <Version>1.0.2</Version>
     <Authors>Mashrul Haque</Authors>
     <Company>EasyAppDev</Company>
     <Description>Bootstrap icon library for Blazor - 2,000+ SVG icons with true trimming support. Only icons you reference are included in published output.</Description>

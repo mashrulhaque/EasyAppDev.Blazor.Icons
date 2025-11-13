@@ -10,10 +10,11 @@
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimMode>link</TrimMode>
 
+    <!-- Disable automatic wwwroot inclusion - this is a meta-package with no static assets -->
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
 
     <!-- Package Information -->
     <PackageId>EasyAppDev.Blazor.Icons</PackageId>
-    <Version>1.0.2</Version>
     <Authors>Mashrul Haque</Authors>
     <Description>Base package for EasyAppDev Blazor icon libraries. This is a meta-package - install specific icon libraries instead: EasyAppDev.Blazor.Icons.Lucide, EasyAppDev.Blazor.Icons.Bootstrap, or EasyAppDev.Blazor.Icons.MaterialDesign. Provides 11,000+ fully trimmable SVG icons.</Description>
     <PackageTags>blazor;icons;svg;trimmable;lucide;material-design;bootstrap;embedded;no-runtime</PackageTags>
@@ -38,6 +39,12 @@
 
   <ItemGroup>
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- Exclude wwwroot from package - this is a meta-package with no static assets -->
+  <ItemGroup>
+    <Content Remove="wwwroot\**" />
+    <None Remove="wwwroot\**" />
   </ItemGroup>
 
 </Project>

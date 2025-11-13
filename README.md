@@ -22,48 +22,6 @@ A fully trimmable Blazor icon library with 11,000+ icons from Lucide, Bootstrap,
   - `EasyAppDev.Blazor.Icons.MaterialDesign` (~7,400 icons)
 - **Fast Builds**: Incremental builds leverage existing compiled components
 
-## How It Works
-
-### Physical Component Files
-
-1. **SVG Sources**: Original SVG files stored in `src/BlazorIcons.Generator/icon-sources/`
-2. **Python Generation**: `generate-components.py` script reads SVGs and generates individual physical .cs files
-3. **Physical Components**: Each icon becomes a sealed `ComponentBase` class in its package's `Components/` directory
-4. **Compilation**: Each package compiles its ~1,000-7,000 component files into separate assemblies
-5. **Trimming**: .NET's IL Linker removes unreferenced icon classes during `dotnet publish`
-
-```
-SVG Files → Python Script → Physical .cs Component Files → .NET Compiler → Separate Package DLLs
-                                                                                      ↓
-                                                                            Your Code References
-                                                                                      ↓
-                                                                          .NET Trimmer Removes Unused
-```
-
-### Architecture
-
-```
-EasyAppDev.Blazor.Icons/
-├── src/
-│   ├── EasyAppDev.Blazor.Icons.Lucide/           # Lucide icon package
-│   │   ├── Components/                             # 1,539 physical component files
-│   │   │   ├── Activity.cs
-│   │   │   ├── Home.cs
-│   │   │   └── ... (1,539 total)
-│   │   └── EasyAppDev.Blazor.Icons.Lucide.csproj
-│   ├── EasyAppDev.Blazor.Icons.Bootstrap/        # Bootstrap icon package
-│   │   ├── Components/                             # 2,078 physical component files
-│   │   └── EasyAppDev.Blazor.Icons.Bootstrap.csproj
-│   ├── EasyAppDev.Blazor.Icons.MaterialDesign/   # Material Design icon package
-│   │   ├── Components/                             # 7,447 physical component files
-│   │   └── EasyAppDev.Blazor.Icons.MaterialDesign.csproj
-│   └── BlazorIcons.Generator/                     # Icon generator tool
-│       ├── generate-components.py                 # Generates physical .cs files from SVGs
-│       └── icon-sources/                          # SVG source files
-└── samples/
-    └── EasyAppDev.Blazor.Icons.Sample/           # Demo Blazor app
-```
-
 ## Usage
 
 ### Installation
@@ -91,9 +49,9 @@ Current versions of available packages:
 
 | Package | Version | NuGet | Icons | Development Size | Published Size (Trimmed) |
 |---------|---------|-------|-------|-----------------|-------------------------|
-| `EasyAppDev.Blazor.Icons.Lucide` | 1.0.2 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Lucide/) | ~1,500 | ~1.5MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.Bootstrap` | 1.0.2 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Bootstrap/) | ~2,000 | ~1.9MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.MaterialDesign` | 1.0.2 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.MaterialDesign/) | ~7,400 | ~5.7MB | **~2-5KB** ✨ |
+| `EasyAppDev.Blazor.Icons.Lucide` | 1.0.3 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Lucide/) | ~1,500 | ~1.5MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.Bootstrap` | 1.0.3 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Bootstrap/) | ~2,000 | ~1.9MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.MaterialDesign` | 1.0.3 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.MaterialDesign/) | ~7,400 | ~5.7MB | **~2-5KB** ✨ |
 
 **Trimming is extremely effective!** With proper syntax (see warning below), published apps include only referenced icons. Typical apps using 50-100 icons from all three libraries result in only **~6KB total overhead** (99.96% reduction).
 
@@ -396,6 +354,48 @@ This syntax causes the Razor compiler to treat icons as HTML elements instead of
 - **For single icon library projects**: Use `@using` for clean, concise code
 - **For multi-library projects**: Use fully qualified names or mix approaches as shown above
 - **For shared components**: Use fully qualified names for clarity and maintainability
+
+## How It Works
+
+### Physical Component Files
+
+1. **SVG Sources**: Original SVG files stored in `src/BlazorIcons.Generator/icon-sources/`
+2. **Python Generation**: `generate-components.py` script reads SVGs and generates individual physical .cs files
+3. **Physical Components**: Each icon becomes a sealed `ComponentBase` class in its package's `Components/` directory
+4. **Compilation**: Each package compiles its ~1,000-7,000 component files into separate assemblies
+5. **Trimming**: .NET's IL Linker removes unreferenced icon classes during `dotnet publish`
+
+```
+SVG Files → Python Script → Physical .cs Component Files → .NET Compiler → Separate Package DLLs
+                                                                                      ↓
+                                                                            Your Code References
+                                                                                      ↓
+                                                                          .NET Trimmer Removes Unused
+```
+
+### Architecture
+
+```
+EasyAppDev.Blazor.Icons/
+├── src/
+│   ├── EasyAppDev.Blazor.Icons.Lucide/           # Lucide icon package
+│   │   ├── Components/                             # 1,539 physical component files
+│   │   │   ├── Activity.cs
+│   │   │   ├── Home.cs
+│   │   │   └── ... (1,539 total)
+│   │   └── EasyAppDev.Blazor.Icons.Lucide.csproj
+│   ├── EasyAppDev.Blazor.Icons.Bootstrap/        # Bootstrap icon package
+│   │   ├── Components/                             # 2,078 physical component files
+│   │   └── EasyAppDev.Blazor.Icons.Bootstrap.csproj
+│   ├── EasyAppDev.Blazor.Icons.MaterialDesign/   # Material Design icon package
+│   │   ├── Components/                             # 7,447 physical component files
+│   │   └── EasyAppDev.Blazor.Icons.MaterialDesign.csproj
+│   └── BlazorIcons.Generator/                     # Icon generator tool
+│       ├── generate-components.py                 # Generates physical .cs files from SVGs
+│       └── icon-sources/                          # SVG source files
+└── samples/
+    └── EasyAppDev.Blazor.Icons.Sample/           # Demo Blazor app
+```
 
 ## Building from Source
 
