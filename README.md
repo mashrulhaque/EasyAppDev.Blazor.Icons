@@ -1,5 +1,10 @@
 # EasyAppDev.Blazor.Icons
 
+[![NuGet](https://img.shields.io/nuget/v/EasyAppDev.Blazor.Icons.Lucide.svg)](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Lucide/)
+[![NuGet](https://img.shields.io/nuget/v/EasyAppDev.Blazor.Icons.Bootstrap.svg)](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Bootstrap/)
+[![NuGet](https://img.shields.io/nuget/v/EasyAppDev.Blazor.Icons.MaterialDesign.svg)](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.MaterialDesign/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A fully trimmable Blazor icon library with 11,000+ icons from Lucide, Bootstrap, and Material Design. Physical component files enable true trimming - only icons you reference are included in your published output.
 
 ## Features
@@ -83,11 +88,11 @@ dotnet add package EasyAppDev.Blazor.Icons.Bootstrap
 
 Current versions of available packages:
 
-| Package | Version | Icons | Size (Untrimmed) |
-|---------|---------|-------|------------------|
-| `EasyAppDev.Blazor.Icons.Lucide` | 1.0.0 | ~1,500 | ~1.5MB |
-| `EasyAppDev.Blazor.Icons.Bootstrap` | 1.0.0 | ~2,000 | ~1.9MB |
-| `EasyAppDev.Blazor.Icons.MaterialDesign` | 1.0.0 | ~7,400 | ~5.7MB |
+| Package | Version | NuGet | Icons | Size (Untrimmed) |
+|---------|---------|-------|-------|------------------|
+| `EasyAppDev.Blazor.Icons.Lucide` | 1.0.2 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Lucide/) | ~1,500 | ~1.5MB |
+| `EasyAppDev.Blazor.Icons.Bootstrap` | 1.0.2 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Bootstrap/) | ~2,000 | ~1.9MB |
+| `EasyAppDev.Blazor.Icons.MaterialDesign` | 1.0.2 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.MaterialDesign/) | ~7,400 | ~5.7MB |
 
 After publishing with trimming enabled, the actual size depends on how many icons you use (typically 5-50KB).
 
