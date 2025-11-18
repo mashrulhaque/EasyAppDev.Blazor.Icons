@@ -32,18 +32,17 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon-bootstrap.png</PackageIcon>
     <PackageReleaseNotes>
+Version 2.0.0 (Breaking Changes):
+- BREAKING: All icons now have 'Bi' prefix (e.g., House → BiHouse, Person → BiPerson)
+- Prevents naming conflicts with user components
+- Enables clean usage with simple @using statements (no fully qualified names needed)
+- Verified trimming: 99.96% size reduction (3.2MB → 6KB for ~60 icons)
+- Updated to latest Bootstrap icon sources (2,078 icons)
+
 Version 1.0.2:
 - Added package icon for better NuGet visibility
 - Improved package metadata and documentation
 - Enhanced trimming support with sealed component classes
-- Updated to latest Bootstrap icon sources
-
-Version 1.0.1:
-- Initial public release
-- 2,000+ Bootstrap SVG icons with full trimming support
-- Individual sealed ComponentBase classes for each icon
-- Zero runtime overhead with embedded SVG content
-- Full IntelliSense support for all icons
     </PackageReleaseNotes>
   </PropertyGroup>
 
