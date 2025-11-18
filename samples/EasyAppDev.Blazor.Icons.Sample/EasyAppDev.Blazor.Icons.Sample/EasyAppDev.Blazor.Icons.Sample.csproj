@@ -15,6 +15,8 @@
     <ProjectReference Include="../../../src/EasyAppDev.Blazor.Icons.Lucide/EasyAppDev.Blazor.Icons.Lucide.csproj" />
     <ProjectReference Include="../../../src/EasyAppDev.Blazor.Icons.Bootstrap/EasyAppDev.Blazor.Icons.Bootstrap.csproj" />
     <ProjectReference Include="../../../src/EasyAppDev.Blazor.Icons.MaterialDesign/EasyAppDev.Blazor.Icons.MaterialDesign.csproj" />
+    <ProjectReference Include="../../../src/EasyAppDev.Blazor.Icons.FontAwesome5/EasyAppDev.Blazor.Icons.FontAwesome5.csproj" />
+    <ProjectReference Include="../../../src/EasyAppDev.Blazor.Icons.FontAwesome6/EasyAppDev.Blazor.Icons.FontAwesome6.csproj" />
   </ItemGroup>
 
 </Project>

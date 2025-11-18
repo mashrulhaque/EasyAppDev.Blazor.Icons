@@ -3,24 +3,28 @@
 [![NuGet](https://img.shields.io/nuget/v/EasyAppDev.Blazor.Icons.Lucide.svg)](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Lucide/)
 [![NuGet](https://img.shields.io/nuget/v/EasyAppDev.Blazor.Icons.Bootstrap.svg)](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Bootstrap/)
 [![NuGet](https://img.shields.io/nuget/v/EasyAppDev.Blazor.Icons.MaterialDesign.svg)](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.MaterialDesign/)
+[![NuGet](https://img.shields.io/nuget/v/EasyAppDev.Blazor.Icons.FontAwesome5.svg)](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.FontAwesome5/)
+[![NuGet](https://img.shields.io/nuget/v/EasyAppDev.Blazor.Icons.FontAwesome6.svg)](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.FontAwesome6/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A fully trimmable Blazor icon library with 11,000+ icons from Lucide, Bootstrap, and Material Design. Physical component files enable true trimming - only icons you reference are included in your published output.
+A fully trimmable Blazor icon library with 14,700+ icons from Lucide, Bootstrap, Material Design, FontAwesome 5, and FontAwesome 6. Physical component files enable true trimming - only icons you reference are included in your published output.
 
 ## Features
 
-- **True Trimming**: Only icons you directly reference are included in published output (~6KB uncompressed, ~2.3KB Brotli, **99.96% reduction** from 14.8MB full library)
-- **Prefix-Based Naming**: All icons use library prefixes (Lu/Bi/Md) - no naming conflicts with your components
-- **Physical Components**: Individual sealed ComponentBase classes (11,064 total)
+- **True Trimming**: Only icons you directly reference are included in published output (~6KB uncompressed, ~2.3KB Brotli, **99.96% reduction** from full library)
+- **Prefix-Based Naming**: All icons use library prefixes (Lu/Bi/Md/Fa5/Fa6) - no naming conflicts with your components
+- **Physical Components**: Individual sealed ComponentBase classes (14,735 total)
 - **Zero Runtime Overhead**: No reflection, no HTTP calls, no dictionaries - just compiled code
 - **Fully Embedded**: SVG content embedded directly in component code
 - **Type-Safe**: Full compile-time checking with direct component references
-- **Full IntelliSense**: Complete autocomplete and intellisense for all 11,000+ icons in your IDE
+- **Full IntelliSense**: Complete autocomplete and intellisense for all 14,700+ icons in your IDE
 - **CSS Controllable**: Style icons with standard CSS properties (color, width, height, etc.)
 - **Separate Packages**: Choose only the icon libraries you need:
   - `EasyAppDev.Blazor.Icons.Lucide` (~1,500 icons, 1.6MB)
   - `EasyAppDev.Blazor.Icons.Bootstrap` (~2,000 icons, 3.2MB)
   - `EasyAppDev.Blazor.Icons.MaterialDesign` (~7,400 icons, 10MB)
+  - `EasyAppDev.Blazor.Icons.FontAwesome5` (~1,600 icons, 2.5MB)
+  - `EasyAppDev.Blazor.Icons.FontAwesome6` (~2,000 icons, 3.2MB)
 - **Fast Builds**: Incremental builds leverage existing compiled components
 
 ## Usage
@@ -39,9 +43,15 @@ dotnet add package EasyAppDev.Blazor.Icons.Bootstrap
 # Material Design icons (~7,400 icons)
 dotnet add package EasyAppDev.Blazor.Icons.MaterialDesign
 
+# FontAwesome 5 icons (~1,600 icons - solid, regular, brands)
+dotnet add package EasyAppDev.Blazor.Icons.FontAwesome5
+
+# FontAwesome 6 icons (~2,000 icons - solid, regular, brands)
+dotnet add package EasyAppDev.Blazor.Icons.FontAwesome6
+
 # Or install multiple:
 dotnet add package EasyAppDev.Blazor.Icons.Lucide
-dotnet add package EasyAppDev.Blazor.Icons.Bootstrap
+dotnet add package EasyAppDev.Blazor.Icons.FontAwesome6
 ```
 
 ### Package Versions
@@ -53,8 +63,10 @@ Current versions of available packages:
 | `EasyAppDev.Blazor.Icons.Lucide` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Lucide/) | ~1,500 | ~1.6MB | **~2-4KB** ✨ |
 | `EasyAppDev.Blazor.Icons.Bootstrap` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Bootstrap/) | ~2,000 | ~3.2MB | **~2-4KB** ✨ |
 | `EasyAppDev.Blazor.Icons.MaterialDesign` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.MaterialDesign/) | ~7,400 | ~10MB | **~2-5KB** ✨ |
+| `EasyAppDev.Blazor.Icons.FontAwesome5` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.FontAwesome5/) | ~1,600 | ~2.5MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.FontAwesome6` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.FontAwesome6/) | ~2,000 | ~3.2MB | **~2-4KB** ✨ |
 
-**Trimming is extremely effective!** With proper syntax (see warning below), published apps include only referenced icons. Typical apps using 50-100 icons from all three libraries result in only **~6KB total overhead** (99.96% reduction).
+**Trimming is extremely effective!** With proper syntax (see warning below), published apps include only referenced icons. Typical apps using 50-100 icons from all libraries result in only **~6KB total overhead** (99.96% reduction).
 
 ### Basic Usage
 
@@ -78,17 +90,23 @@ No configuration needed! Just add using statements and reference icons directly.
 @using EasyAppDev.Blazor.Icons.Lucide
 @using EasyAppDev.Blazor.Icons.Bootstrap
 @using EasyAppDev.Blazor.Icons.MaterialDesign
+@using EasyAppDev.Blazor.Icons.FontAwesome5
+@using EasyAppDev.Blazor.Icons.FontAwesome6
 
 <h1>My Page</h1>
 
 <!-- All libraries work together - prefixes prevent conflicts -->
-<LuHome />      <!-- Lucide home icon -->
-<BiHouse />     <!-- Bootstrap house icon -->
-<MdHome />      <!-- Material Design home icon -->
+<LuHome />           <!-- Lucide home icon -->
+<BiHouse />          <!-- Bootstrap house icon -->
+<MdHome />           <!-- Material Design home icon -->
+<Fa5SolidHome />     <!-- FontAwesome 5 solid home icon -->
+<Fa6SolidHome />     <!-- FontAwesome 6 solid home icon -->
 
-<LuActivity />  <!-- Lucide -->
-<BiPerson />    <!-- Bootstrap -->
-<MdSettings />  <!-- Material Design -->
+<LuActivity />       <!-- Lucide -->
+<BiPerson />         <!-- Bootstrap -->
+<MdSettings />       <!-- Material Design -->
+<Fa5BrandsTwitter /> <!-- FontAwesome 5 brands -->
+<Fa6RegularHeart />  <!-- FontAwesome 6 regular -->
 ```
 
 **Alternative: Use fully qualified names** (if you prefer):

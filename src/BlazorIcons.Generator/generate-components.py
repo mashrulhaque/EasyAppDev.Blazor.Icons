@@ -48,6 +48,28 @@ ICON_SETS = {
         "stroke_width": None,
         "stroke_linecap": None,
         "stroke_linejoin": None
+    },
+    "fontawesome5": {
+        "namespace": "EasyAppDev.Blazor.Icons.FontAwesome5",
+        "package_dir": "EasyAppDev.Blazor.Icons.FontAwesome5",
+        "prefix": "Fa5",
+        "viewbox": "0 0 512 512",
+        "fill": "currentColor",
+        "stroke": None,
+        "stroke_width": None,
+        "stroke_linecap": None,
+        "stroke_linejoin": None
+    },
+    "fontawesome6": {
+        "namespace": "EasyAppDev.Blazor.Icons.FontAwesome6",
+        "package_dir": "EasyAppDev.Blazor.Icons.FontAwesome6",
+        "prefix": "Fa6",
+        "viewbox": "0 0 512 512",
+        "fill": "currentColor",
+        "stroke": None,
+        "stroke_width": None,
+        "stroke_linecap": None,
+        "stroke_linejoin": None
     }
 }
 

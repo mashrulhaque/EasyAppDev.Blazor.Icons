@@ -60,7 +60,7 @@
 </style>
 
 <h1>Icon Gallery</h1>
-<p>Browse icons from all three libraries. Click any icon to see its component name.</p>
+<p>Browse icons from all five libraries. Click any icon to see its component name.</p>
 
 <div class="library-tabs">
     <button class="tab-button @(selectedLibrary == "lucide" ? "active" : "")" @onclick="SelectLucide">
@@ -74,6 +74,14 @@
     <button class="tab-button @(selectedLibrary == "material" ? "active" : "")" @onclick="SelectMaterial">
         <MdAndroid style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" />
         Material (7,447)
+    </button>
+    <button class="tab-button @(selectedLibrary == "fontawesome5" ? "active" : "")" @onclick="SelectFontAwesome5">
+        <Fa5SolidFlag style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" />
+        FontAwesome 5 (1,611)
+    </button>
+    <button class="tab-button @(selectedLibrary == "fontawesome6" ? "active" : "")" @onclick="SelectFontAwesome6">
+        <Fa6SolidFlag style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" />
+        FontAwesome 6 (2,060)
     </button>
 </div>
 
@@ -108,6 +116,32 @@ else if (selectedLibrary == "material")
     <h2>Material Design Icons Sample</h2>
     <div class="gallery-grid">
         @foreach (var icon in materialIcons)
+        {
+            <div class="gallery-item" @onclick="() => ShowIconName(icon.name)">
+                @icon.component
+                <div class="gallery-label">@icon.name</div>
+            </div>
+        }
+    </div>
+}
+else if (selectedLibrary == "fontawesome5")
+{
+    <h2>FontAwesome 5 Icons Sample</h2>
+    <div class="gallery-grid">
+        @foreach (var icon in fontAwesome5Icons)
+        {
+            <div class="gallery-item" @onclick="() => ShowIconName(icon.name)">
+                @icon.component
+                <div class="gallery-label">@icon.name</div>
+            </div>
+        }
+    </div>
+}
+else if (selectedLibrary == "fontawesome6")
+{
+    <h2>FontAwesome 6 Icons Sample</h2>
+    <div class="gallery-grid">
+        @foreach (var icon in fontAwesome6Icons)
         {
             <div class="gallery-item" @onclick="() => ShowIconName(icon.name)">
                 @icon.component
@@ -206,6 +240,54 @@ else if (selectedLibrary == "material")
         ("MdError", @<MdError class="gallery-icon" />),
     };
 
+    private List<(string name, RenderFragment component)> fontAwesome5Icons = new()
+    {
+        ("Fa5SolidHome", @<Fa5SolidHome class="gallery-icon" />),
+        ("Fa5SolidUser", @<Fa5SolidUser class="gallery-icon" />),
+        ("Fa5SolidHeart", @<Fa5SolidHeart class="gallery-icon" />),
+        ("Fa5SolidStar", @<Fa5SolidStar class="gallery-icon" />),
+        ("Fa5SolidSearch", @<Fa5SolidSearch class="gallery-icon" />),
+        ("Fa5SolidEnvelope", @<Fa5SolidEnvelope class="gallery-icon" />),
+        ("Fa5SolidCog", @<Fa5SolidCog class="gallery-icon" />),
+        ("Fa5SolidTrash", @<Fa5SolidTrash class="gallery-icon" />),
+        ("Fa5SolidEdit", @<Fa5SolidEdit class="gallery-icon" />),
+        ("Fa5SolidCheck", @<Fa5SolidCheck class="gallery-icon" />),
+        ("Fa5RegularHeart", @<Fa5RegularHeart class="gallery-icon" />),
+        ("Fa5RegularStar", @<Fa5RegularStar class="gallery-icon" />),
+        ("Fa5RegularUser", @<Fa5RegularUser class="gallery-icon" />),
+        ("Fa5RegularClock", @<Fa5RegularClock class="gallery-icon" />),
+        ("Fa5BrandsFacebook", @<Fa5BrandsFacebook class="gallery-icon" />),
+        ("Fa5BrandsTwitter", @<Fa5BrandsTwitter class="gallery-icon" />),
+        ("Fa5BrandsGithub", @<Fa5BrandsGithub class="gallery-icon" />),
+        ("Fa5BrandsLinkedin", @<Fa5BrandsLinkedin class="gallery-icon" />),
+        ("Fa5BrandsGoogle", @<Fa5BrandsGoogle class="gallery-icon" />),
+        ("Fa5BrandsApple", @<Fa5BrandsApple class="gallery-icon" />),
+    };
+
+    private List<(string name, RenderFragment component)> fontAwesome6Icons = new()
+    {
+        ("Fa6SolidHome", @<Fa6SolidHome class="gallery-icon" />),
+        ("Fa6SolidUser", @<Fa6SolidUser class="gallery-icon" />),
+        ("Fa6SolidHeart", @<Fa6SolidHeart class="gallery-icon" />),
+        ("Fa6SolidStar", @<Fa6SolidStar class="gallery-icon" />),
+        ("Fa6SolidMagnifyingGlass", @<Fa6SolidMagnifyingGlass class="gallery-icon" />),
+        ("Fa6SolidEnvelope", @<Fa6SolidEnvelope class="gallery-icon" />),
+        ("Fa6SolidGear", @<Fa6SolidGear class="gallery-icon" />),
+        ("Fa6SolidTrash", @<Fa6SolidTrash class="gallery-icon" />),
+        ("Fa6SolidPenToSquare", @<Fa6SolidPenToSquare class="gallery-icon" />),
+        ("Fa6SolidCheck", @<Fa6SolidCheck class="gallery-icon" />),
+        ("Fa6RegularHeart", @<Fa6RegularHeart class="gallery-icon" />),
+        ("Fa6RegularStar", @<Fa6RegularStar class="gallery-icon" />),
+        ("Fa6RegularUser", @<Fa6RegularUser class="gallery-icon" />),
+        ("Fa6RegularClock", @<Fa6RegularClock class="gallery-icon" />),
+        ("Fa6BrandsFacebook", @<Fa6BrandsFacebook class="gallery-icon" />),
+        ("Fa6BrandsXTwitter", @<Fa6BrandsXTwitter class="gallery-icon" />),
+        ("Fa6BrandsGithub", @<Fa6BrandsGithub class="gallery-icon" />),
+        ("Fa6BrandsLinkedin", @<Fa6BrandsLinkedin class="gallery-icon" />),
+        ("Fa6BrandsGoogle", @<Fa6BrandsGoogle class="gallery-icon" />),
+        ("Fa6BrandsApple", @<Fa6BrandsApple class="gallery-icon" />),
+    };
+
     private void ShowIconName(string name)
     {
         selectedIconName = name;
@@ -215,4 +297,6 @@ else if (selectedLibrary == "material")
     private void SelectLucide() => selectedLibrary = "lucide";
     private void SelectBootstrap() => selectedLibrary = "bootstrap";
     private void SelectMaterial() => selectedLibrary = "material";
+    private void SelectFontAwesome5() => selectedLibrary = "fontawesome5";
+    private void SelectFontAwesome6() => selectedLibrary = "fontawesome6";
 }

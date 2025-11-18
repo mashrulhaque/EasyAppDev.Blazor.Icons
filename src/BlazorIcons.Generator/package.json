@@ -15,11 +15,14 @@
     "lucide",
     "bootstrap",
     "material-design",
+    "fontawesome",
     "generator"
   ],
   "dependencies": {
     "lucide-static": "^0.460.0",
     "bootstrap-icons": "^1.11.3",
-    "@mdi/svg": "^7.4.47"
+    "@mdi/svg": "^7.4.47",
+    "@fortawesome/fontawesome-free-v5": "npm:@fortawesome/fontawesome-free@5.15.4",
+    "@fortawesome/fontawesome-free": "^6.7.2"
   }
 }

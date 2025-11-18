@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Trimming Configuration -->
+    <IsTrimmable>true</IsTrimmable>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <TrimMode>link</TrimMode>
+
+    <!-- SourceLink Configuration -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugType>embedded</DebugType>
+
+    <!-- Documentation -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+
+    <!-- Package Information -->
+    <PackageId>EasyAppDev.Blazor.Icons.FontAwesome5</PackageId>
+    <Authors>Mashrul Haque</Authors>
+    <Company>EasyAppDev</Company>
+    <Description>FontAwesome 5 icon library for Blazor - 1,600+ SVG icons (solid, regular, brands) with true trimming support. Only icons you reference are included in published output.</Description>
+    <PackageTags>blazor;icons;svg;trimmable;fontawesome;fontawesome5;embedded</PackageTags>
+    <RepositoryUrl>https://github.com/mashrulhaque/EasyAppDev.Blazor.Icons</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/mashrulhaque/EasyAppDev.Blazor.Icons</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Contact>info@easyappdev.com</Contact>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>
+Version 2.0.0:
+- Initial release of FontAwesome 5 package
+- 1,611 icons across three styles: Solid, Regular, and Brands
+- All icons have 'Fa5' prefix (e.g., Fa5SolidHome, Fa5BrandsTwitter, Fa5RegularHeart)
+- Prevents naming conflicts with user components
+- Full trimming support - only referenced icons included in published output
+- Based on FontAwesome Free 5.15.4
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+</Project>
