@@ -1,0 +1,4 @@
+is_global = true
+
+# Suppress CA2007 for Blazor WASM projects (ConfigureAwait not needed)
+dotnet_diagnostic.CA2007.severity = none

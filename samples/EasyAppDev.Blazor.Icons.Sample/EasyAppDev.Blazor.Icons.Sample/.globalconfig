@@ -1,0 +1,7 @@
+is_global = true
+
+# Suppress CA2007 for Blazor projects (ConfigureAwait not needed in Blazor)
+dotnet_diagnostic.CA2007.severity = none
+
+# Suppress CA5394 for sample/demo code (Random is fine for non-security purposes)
+dotnet_diagnostic.CA5394.severity = none

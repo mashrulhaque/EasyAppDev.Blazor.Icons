@@ -32,18 +32,17 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon-materialdesign.png</PackageIcon>
     <PackageReleaseNotes>
+Version 2.0.0 (Breaking Changes):
+- BREAKING: All icons now have 'Md' prefix (e.g., Home → MdHome, Settings → MdSettings)
+- Prevents naming conflicts with user components
+- Enables clean usage with simple @using statements (no fully qualified names needed)
+- Verified trimming: 99.96% size reduction (10MB → 6KB for ~60 icons)
+- Updated to latest Material Design icon sources (7,447 icons)
+
 Version 1.0.2:
 - Added package icon for better NuGet visibility
 - Improved package metadata and documentation
 - Enhanced trimming support with sealed component classes
-- Updated to latest Material Design icon sources
-
-Version 1.0.1:
-- Initial public release
-- 7,400+ Material Design SVG icons with full trimming support
-- Individual sealed ComponentBase classes for each icon
-- Zero runtime overhead with embedded SVG content
-- Full IntelliSense support for all icons
     </PackageReleaseNotes>
   </PropertyGroup>
 
