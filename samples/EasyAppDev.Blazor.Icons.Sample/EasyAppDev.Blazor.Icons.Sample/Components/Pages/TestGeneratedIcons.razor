@@ -1,7 +1,4 @@
 @page "/test-generated"
-@using EasyAppDev.Blazor.Icons.Lucide
-@using EasyAppDev.Blazor.Icons.Bootstrap
-@using EasyAppDev.Blazor.Icons.MaterialDesign
 
 <PageTitle>Icon Gallery - EasyAppDev.Blazor.Icons</PageTitle>
 
@@ -67,15 +64,15 @@
 
 <div class="library-tabs">
     <button class="tab-button @(selectedLibrary == "lucide" ? "active" : "")" @onclick="SelectLucide">
-        <EasyAppDev.Blazor.Icons.Lucide.Package style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" />
+        <LuPackage style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" />
         Lucide (1,539)
     </button>
     <button class="tab-button @(selectedLibrary == "bootstrap" ? "active" : "")" @onclick="SelectBootstrap">
-        <EasyAppDev.Blazor.Icons.Bootstrap.Bootstrap style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" />
+        <BiBootstrap style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" />
         Bootstrap (2,078)
     </button>
     <button class="tab-button @(selectedLibrary == "material" ? "active" : "")" @onclick="SelectMaterial">
-        <EasyAppDev.Blazor.Icons.MaterialDesign.Android style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" />
+        <MdAndroid style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" />
         Material (7,447)
     </button>
 </div>
@@ -133,80 +130,80 @@ else if (selectedLibrary == "material")
 
     private List<(string name, RenderFragment component)> lucideIcons = new()
     {
-        ("Activity", @<EasyAppDev.Blazor.Icons.Lucide.Activity class="gallery-icon" />),
-        ("Airplay", @<EasyAppDev.Blazor.Icons.Lucide.Airplay class="gallery-icon" />),
-        ("AlertCircle", @<EasyAppDev.Blazor.Icons.Lucide.AlertCircle class="gallery-icon" />),
-        ("Archive", @<EasyAppDev.Blazor.Icons.Lucide.Archive class="gallery-icon" />),
-        ("ArrowRight", @<EasyAppDev.Blazor.Icons.Lucide.ArrowRight class="gallery-icon" />),
-        ("Bell", @<EasyAppDev.Blazor.Icons.Lucide.Bell class="gallery-icon" />),
-        ("Calendar", @<EasyAppDev.Blazor.Icons.Lucide.Calendar class="gallery-icon" />),
-        ("Camera", @<EasyAppDev.Blazor.Icons.Lucide.Camera class="gallery-icon" />),
-        ("Check", @<EasyAppDev.Blazor.Icons.Lucide.Check class="gallery-icon" />),
-        ("Cloud", @<EasyAppDev.Blazor.Icons.Lucide.Cloud class="gallery-icon" />),
-        ("Code", @<EasyAppDev.Blazor.Icons.Lucide.Code class="gallery-icon" />),
-        ("Download", @<EasyAppDev.Blazor.Icons.Lucide.Download class="gallery-icon" />),
-        ("Eye", @<EasyAppDev.Blazor.Icons.Lucide.Eye class="gallery-icon" />),
-        ("File", @<EasyAppDev.Blazor.Icons.Lucide.File class="gallery-icon" />),
-        ("Folder", @<EasyAppDev.Blazor.Icons.Lucide.Folder class="gallery-icon" />),
-        ("Heart", @<EasyAppDev.Blazor.Icons.Lucide.Heart class="gallery-icon" />),
-        ("Home", @<EasyAppDev.Blazor.Icons.Lucide.Home class="gallery-icon" />),
-        ("Mail", @<EasyAppDev.Blazor.Icons.Lucide.Mail class="gallery-icon" />),
-        ("Menu", @<EasyAppDev.Blazor.Icons.Lucide.Menu class="gallery-icon" />),
-        ("Search", @<EasyAppDev.Blazor.Icons.Lucide.Search class="gallery-icon" />),
-        ("Settings", @<EasyAppDev.Blazor.Icons.Lucide.Settings class="gallery-icon" />),
-        ("Share", @<EasyAppDev.Blazor.Icons.Lucide.Share class="gallery-icon" />),
-        ("Star", @<EasyAppDev.Blazor.Icons.Lucide.Star class="gallery-icon" />),
-        ("Trash", @<EasyAppDev.Blazor.Icons.Lucide.Trash class="gallery-icon" />),
-        ("User", @<EasyAppDev.Blazor.Icons.Lucide.User class="gallery-icon" />),
-        ("Zap", @<EasyAppDev.Blazor.Icons.Lucide.Zap class="gallery-icon" />),
+        ("LuActivity", @<LuActivity class="gallery-icon" />),
+        ("LuAirplay", @<LuAirplay class="gallery-icon" />),
+        ("LuAlertCircle", @<LuAlertCircle class="gallery-icon" />),
+        ("LuArchive", @<LuArchive class="gallery-icon" />),
+        ("LuArrowRight", @<LuArrowRight class="gallery-icon" />),
+        ("LuBell", @<LuBell class="gallery-icon" />),
+        ("LuCalendar", @<LuCalendar class="gallery-icon" />),
+        ("LuCamera", @<LuCamera class="gallery-icon" />),
+        ("LuCheck", @<LuCheck class="gallery-icon" />),
+        ("LuCloud", @<LuCloud class="gallery-icon" />),
+        ("LuCode", @<LuCode class="gallery-icon" />),
+        ("LuDownload", @<LuDownload class="gallery-icon" />),
+        ("LuEye", @<LuEye class="gallery-icon" />),
+        ("LuFile", @<LuFile class="gallery-icon" />),
+        ("LuFolder", @<LuFolder class="gallery-icon" />),
+        ("LuHeart", @<LuHeart class="gallery-icon" />),
+        ("LuHome", @<LuHome class="gallery-icon" />),
+        ("LuMail", @<LuMail class="gallery-icon" />),
+        ("LuMenu", @<LuMenu class="gallery-icon" />),
+        ("LuSearch", @<LuSearch class="gallery-icon" />),
+        ("LuSettings", @<LuSettings class="gallery-icon" />),
+        ("LuShare", @<LuShare class="gallery-icon" />),
+        ("LuStar", @<LuStar class="gallery-icon" />),
+        ("LuTrash", @<LuTrash class="gallery-icon" />),
+        ("LuUser", @<LuUser class="gallery-icon" />),
+        ("LuZap", @<LuZap class="gallery-icon" />),
     };
 
     private List<(string name, RenderFragment component)> bootstrapIcons = new()
     {
-        ("House", @<EasyAppDev.Blazor.Icons.Bootstrap.House class="gallery-icon" />),
-        ("Person", @<EasyAppDev.Blazor.Icons.Bootstrap.Person class="gallery-icon" />),
-        ("Gear", @<EasyAppDev.Blazor.Icons.Bootstrap.Gear class="gallery-icon" />),
-        ("Heart", @<EasyAppDev.Blazor.Icons.Bootstrap.Heart class="gallery-icon" />),
-        ("Star", @<EasyAppDev.Blazor.Icons.Bootstrap.Star class="gallery-icon" />),
-        ("Calendar", @<EasyAppDev.Blazor.Icons.Bootstrap.Calendar class="gallery-icon" />),
-        ("Clock", @<EasyAppDev.Blazor.Icons.Bootstrap.Clock class="gallery-icon" />),
-        ("Envelope", @<EasyAppDev.Blazor.Icons.Bootstrap.Envelope class="gallery-icon" />),
-        ("Folder", @<EasyAppDev.Blazor.Icons.Bootstrap.Folder class="gallery-icon" />),
-        ("Search", @<EasyAppDev.Blazor.Icons.Bootstrap.Search class="gallery-icon" />),
-        ("Download", @<EasyAppDev.Blazor.Icons.Bootstrap.Download class="gallery-icon" />),
-        ("Upload", @<EasyAppDev.Blazor.Icons.Bootstrap.Upload class="gallery-icon" />),
-        ("Trash", @<EasyAppDev.Blazor.Icons.Bootstrap.Trash class="gallery-icon" />),
-        ("PencilSquare", @<EasyAppDev.Blazor.Icons.Bootstrap.PencilSquare class="gallery-icon" />),
-        ("Check", @<EasyAppDev.Blazor.Icons.Bootstrap.Check class="gallery-icon" />),
-        ("X", @<EasyAppDev.Blazor.Icons.Bootstrap.X class="gallery-icon" />),
-        ("Plus", @<EasyAppDev.Blazor.Icons.Bootstrap.Plus class="gallery-icon" />),
-        ("Dash", @<EasyAppDev.Blazor.Icons.Bootstrap.Dash class="gallery-icon" />),
-        ("ChevronRight", @<EasyAppDev.Blazor.Icons.Bootstrap.ChevronRight class="gallery-icon" />),
-        ("ChevronLeft", @<EasyAppDev.Blazor.Icons.Bootstrap.ChevronLeft class="gallery-icon" />),
+        ("BiHouse", @<BiHouse class="gallery-icon" />),
+        ("BiPerson", @<BiPerson class="gallery-icon" />),
+        ("BiGear", @<BiGear class="gallery-icon" />),
+        ("BiHeart", @<BiHeart class="gallery-icon" />),
+        ("BiStar", @<BiStar class="gallery-icon" />),
+        ("BiCalendar", @<BiCalendar class="gallery-icon" />),
+        ("BiClock", @<BiClock class="gallery-icon" />),
+        ("BiEnvelope", @<BiEnvelope class="gallery-icon" />),
+        ("BiFolder", @<BiFolder class="gallery-icon" />),
+        ("BiSearch", @<BiSearch class="gallery-icon" />),
+        ("BiDownload", @<BiDownload class="gallery-icon" />),
+        ("BiUpload", @<BiUpload class="gallery-icon" />),
+        ("BiTrash", @<BiTrash class="gallery-icon" />),
+        ("BiPencilSquare", @<BiPencilSquare class="gallery-icon" />),
+        ("BiCheck", @<BiCheck class="gallery-icon" />),
+        ("BiX", @<BiX class="gallery-icon" />),
+        ("BiPlus", @<BiPlus class="gallery-icon" />),
+        ("BiDash", @<BiDash class="gallery-icon" />),
+        ("BiChevronRight", @<BiChevronRight class="gallery-icon" />),
+        ("BiChevronLeft", @<BiChevronLeft class="gallery-icon" />),
     };
 
     private List<(string name, RenderFragment component)> materialIcons = new()
     {
-        ("Home", @<EasyAppDev.Blazor.Icons.MaterialDesign.Home class="gallery-icon" />),
-        ("Person", @<EasyAppDev.Blazor.Icons.MaterialDesign.Person class="gallery-icon" />),
-        ("Settings", @<EasyAppDev.Blazor.Icons.MaterialDesign.Settings class="gallery-icon" />),
-        ("Favorite", @<EasyAppDev.Blazor.Icons.MaterialDesign.Favorite class="gallery-icon" />),
-        ("Star", @<EasyAppDev.Blazor.Icons.MaterialDesign.Star class="gallery-icon" />),
-        ("Search", @<EasyAppDev.Blazor.Icons.MaterialDesign.Search class="gallery-icon" />),
-        ("Menu", @<EasyAppDev.Blazor.Icons.MaterialDesign.Menu class="gallery-icon" />),
-        ("Close", @<EasyAppDev.Blazor.Icons.MaterialDesign.Close class="gallery-icon" />),
-        ("Check", @<EasyAppDev.Blazor.Icons.MaterialDesign.Check class="gallery-icon" />),
-        ("ArrowForward", @<EasyAppDev.Blazor.Icons.MaterialDesign.ArrowForward class="gallery-icon" />),
-        ("ArrowBack", @<EasyAppDev.Blazor.Icons.MaterialDesign.ArrowBack class="gallery-icon" />),
-        ("Add", @<EasyAppDev.Blazor.Icons.MaterialDesign.Add class="gallery-icon" />),
-        ("Remove", @<EasyAppDev.Blazor.Icons.MaterialDesign.Remove class="gallery-icon" />),
-        ("Edit", @<EasyAppDev.Blazor.Icons.MaterialDesign.Edit class="gallery-icon" />),
-        ("Delete", @<EasyAppDev.Blazor.Icons.MaterialDesign.Delete class="gallery-icon" />),
-        ("Email", @<EasyAppDev.Blazor.Icons.MaterialDesign.Email class="gallery-icon" />),
-        ("Phone", @<EasyAppDev.Blazor.Icons.MaterialDesign.Phone class="gallery-icon" />),
-        ("Info", @<EasyAppDev.Blazor.Icons.MaterialDesign.Info class="gallery-icon" />),
-        ("Warning", @<EasyAppDev.Blazor.Icons.MaterialDesign.Warning class="gallery-icon" />),
-        ("Error", @<EasyAppDev.Blazor.Icons.MaterialDesign.Error class="gallery-icon" />),
+        ("MdHome", @<MdHome class="gallery-icon" />),
+        ("MdPerson", @<MdPerson class="gallery-icon" />),
+        ("MdSettings", @<MdSettings class="gallery-icon" />),
+        ("MdFavorite", @<MdFavorite class="gallery-icon" />),
+        ("MdStar", @<MdStar class="gallery-icon" />),
+        ("MdSearch", @<MdSearch class="gallery-icon" />),
+        ("MdMenu", @<MdMenu class="gallery-icon" />),
+        ("MdClose", @<MdClose class="gallery-icon" />),
+        ("MdCheck", @<MdCheck class="gallery-icon" />),
+        ("MdArrowForward", @<MdArrowForward class="gallery-icon" />),
+        ("MdArrowBack", @<MdArrowBack class="gallery-icon" />),
+        ("MdAdd", @<MdAdd class="gallery-icon" />),
+        ("MdRemove", @<MdRemove class="gallery-icon" />),
+        ("MdEdit", @<MdEdit class="gallery-icon" />),
+        ("MdDelete", @<MdDelete class="gallery-icon" />),
+        ("MdEmail", @<MdEmail class="gallery-icon" />),
+        ("MdPhone", @<MdPhone class="gallery-icon" />),
+        ("MdInfo", @<MdInfo class="gallery-icon" />),
+        ("MdWarning", @<MdWarning class="gallery-icon" />),
+        ("MdError", @<MdError class="gallery-icon" />),
     };
 
     private void ShowIconName(string name)

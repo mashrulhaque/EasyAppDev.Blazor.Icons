@@ -9,7 +9,8 @@ A fully trimmable Blazor icon library with 11,000+ icons from Lucide, Bootstrap,
 
 ## Features
 
-- **True Trimming**: Only icons you directly reference are included in published output (~6KB for typical usage, 99.96% reduction from full library)
+- **True Trimming**: Only icons you directly reference are included in published output (~6KB uncompressed, ~2.3KB Brotli, **99.96% reduction** from 14.8MB full library)
+- **Prefix-Based Naming**: All icons use library prefixes (Lu/Bi/Md) - no naming conflicts with your components
 - **Physical Components**: Individual sealed ComponentBase classes (11,064 total)
 - **Zero Runtime Overhead**: No reflection, no HTTP calls, no dictionaries - just compiled code
 - **Fully Embedded**: SVG content embedded directly in component code
@@ -17,9 +18,9 @@ A fully trimmable Blazor icon library with 11,000+ icons from Lucide, Bootstrap,
 - **Full IntelliSense**: Complete autocomplete and intellisense for all 11,000+ icons in your IDE
 - **CSS Controllable**: Style icons with standard CSS properties (color, width, height, etc.)
 - **Separate Packages**: Choose only the icon libraries you need:
-  - `EasyAppDev.Blazor.Icons.Lucide` (~1,500 icons)
-  - `EasyAppDev.Blazor.Icons.Bootstrap` (~2,000 icons)
-  - `EasyAppDev.Blazor.Icons.MaterialDesign` (~7,400 icons)
+  - `EasyAppDev.Blazor.Icons.Lucide` (~1,500 icons, 1.6MB)
+  - `EasyAppDev.Blazor.Icons.Bootstrap` (~2,000 icons, 3.2MB)
+  - `EasyAppDev.Blazor.Icons.MaterialDesign` (~7,400 icons, 10MB)
 - **Fast Builds**: Incremental builds leverage existing compiled components
 
 ## Usage
@@ -49,63 +50,68 @@ Current versions of available packages:
 
 | Package | Version | NuGet | Icons | Development Size | Published Size (Trimmed) |
 |---------|---------|-------|-------|-----------------|-------------------------|
-| `EasyAppDev.Blazor.Icons.Lucide` | 1.0.4 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Lucide/) | ~1,500 | ~1.5MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.Bootstrap` | 1.0.4 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Bootstrap/) | ~2,000 | ~1.9MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.MaterialDesign` | 1.0.4 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.MaterialDesign/) | ~7,400 | ~5.7MB | **~2-5KB** ✨ |
+| `EasyAppDev.Blazor.Icons.Lucide` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Lucide/) | ~1,500 | ~1.6MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.Bootstrap` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Bootstrap/) | ~2,000 | ~3.2MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.MaterialDesign` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.MaterialDesign/) | ~7,400 | ~10MB | **~2-5KB** ✨ |
 
 **Trimming is extremely effective!** With proper syntax (see warning below), published apps include only referenced icons. Typical apps using 50-100 icons from all three libraries result in only **~6KB total overhead** (99.96% reduction).
 
 ### Basic Usage
 
-No configuration needed! Just reference icons directly.
+No configuration needed! Just add using statements and reference icons directly.
 
-**⚠️ IMPORTANT: Do NOT use namespace aliases like `@using Lucide = ...` - this breaks trimming!** See the [Handling Naming Conflicts](#handling-naming-conflicts) section for details.
-
-**Single icon library** (simplest):
+**Single icon library**:
 ```razor
 @page "/"
 @using EasyAppDev.Blazor.Icons.Lucide
 
 <h1>My Page</h1>
 
-<Activity />
-<Airplay />
-<Home />
+<LuActivity />
+<LuAirplay />
+<LuHome />
 ```
 
-**Multiple icon libraries** (use fully qualified names to avoid conflicts):
-```razor
-@page "/"
-
-<h1>My Page</h1>
-
-<!-- Lucide icons with fully qualified names -->
-<EasyAppDev.Blazor.Icons.Lucide.Activity />
-<EasyAppDev.Blazor.Icons.Lucide.Airplay />
-<EasyAppDev.Blazor.Icons.Lucide.Home />
-
-<!-- Bootstrap icons with fully qualified names -->
-<EasyAppDev.Blazor.Icons.Bootstrap.House />
-<EasyAppDev.Blazor.Icons.Bootstrap.Person />
-<EasyAppDev.Blazor.Icons.Bootstrap.Gear />
-```
-
-**Alternative: Mix using statements with fully qualified names**
+**Multiple icon libraries** (prefixes prevent naming conflicts):
 ```razor
 @page "/"
 @using EasyAppDev.Blazor.Icons.Lucide
+@using EasyAppDev.Blazor.Icons.Bootstrap
+@using EasyAppDev.Blazor.Icons.MaterialDesign
 
 <h1>My Page</h1>
 
-<!-- Lucide icons (short names after @using) -->
-<Activity />
-<Airplay />
-<Home />
+<!-- All libraries work together - prefixes prevent conflicts -->
+<LuHome />      <!-- Lucide home icon -->
+<BiHouse />     <!-- Bootstrap house icon -->
+<MdHome />      <!-- Material Design home icon -->
 
-<!-- Bootstrap icons (fully qualified to avoid conflicts) -->
-<EasyAppDev.Blazor.Icons.Bootstrap.House />
-<EasyAppDev.Blazor.Icons.Bootstrap.Person />
-<EasyAppDev.Blazor.Icons.Bootstrap.Gear />
+<LuActivity />  <!-- Lucide -->
+<BiPerson />    <!-- Bootstrap -->
+<MdSettings />  <!-- Material Design -->
+```
+
+**Alternative: Use fully qualified names** (if you prefer):
+```razor
+@page "/"
+
+<h1>My Page</h1>
+
+<!-- No using statements needed -->
+<EasyAppDev.Blazor.Icons.Lucide.LuActivity />
+<EasyAppDev.Blazor.Icons.Bootstrap.BiHouse />
+<EasyAppDev.Blazor.Icons.MaterialDesign.MdHome />
+```
+
+**⚠️ IMPORTANT: Do NOT use namespace aliases** - this breaks trimming:
+```razor
+<!-- ❌ WRONG - breaks trimming -->
+@using Lucide = EasyAppDev.Blazor.Icons.Lucide
+<Lucide.LuActivity />
+
+<!-- ✅ CORRECT - trimming works -->
+@using EasyAppDev.Blazor.Icons.Lucide
+<LuActivity />
 ```
 
 ### Styling Icons
@@ -118,19 +124,19 @@ Icons support all standard CSS styling. Icons inherit size and color from their 
 @using EasyAppDev.Blazor.Icons.Lucide
 
 <!-- Using width and height -->
-<Activity style="width: 24px; height: 24px;" />
-<Activity style="width: 32px; height: 32px;" />
-<Activity style="width: 48px; height: 48px;" />
+<LuActivity style="width: 24px; height: 24px;" />
+<LuActivity style="width: 32px; height: 32px;" />
+<LuActivity style="width: 48px; height: 48px;" />
 
 <!-- Using font-size (if icon container doesn't specify width/height) -->
 <div style="font-size: 24px;">
-    <Activity />
+    <LuActivity />
 </div>
 
 <!-- Using CSS classes -->
-<Home class="icon-sm" />      <!-- small -->
-<Home class="icon-md" />      <!-- medium -->
-<Home class="icon-lg" />      <!-- large -->
+<LuHome class="icon-sm" />      <!-- small -->
+<LuHome class="icon-md" />      <!-- medium -->
+<LuHome class="icon-lg" />      <!-- large -->
 ```
 
 #### Color Control
@@ -139,16 +145,16 @@ Icons support all standard CSS styling. Icons inherit size and color from their 
 @using EasyAppDev.Blazor.Icons.Lucide
 
 <!-- Inline color -->
-<Activity style="color: red;" />
-<Activity style="color: #00ff00;" />
+<LuActivity style="color: red;" />
+<LuActivity style="color: #00ff00;" />
 
 <!-- Using CSS classes -->
-<Activity class="text-primary" />
-<Activity class="text-danger" />
+<LuActivity class="text-primary" />
+<LuActivity class="text-danger" />
 
 <!-- From parent element -->
 <div style="color: blue;">
-    <Activity />
+    <LuActivity />
 </div>
 ```
 
@@ -158,12 +164,12 @@ Icons support all standard CSS styling. Icons inherit size and color from their 
 @using EasyAppDev.Blazor.Icons.Lucide
 
 <!-- Lucide (outline icons) - control stroke width -->
-<Activity style="color: currentColor; stroke-width: 2;" />
-<Activity style="color: currentColor; stroke-width: 1.5;" />
+<LuActivity style="color: currentColor; stroke-width: 2;" />
+<LuActivity style="color: currentColor; stroke-width: 1.5;" />
 
 <!-- Bootstrap & Material Design (filled icons) - use fully qualified names -->
-<EasyAppDev.Blazor.Icons.Bootstrap.House style="color: currentColor;" />
-<EasyAppDev.Blazor.Icons.MaterialDesign.Home style="color: currentColor;" />
+<EasyAppDev.Blazor.Icons.Bootstrap.BiHouse style="color: currentColor;" />
+<EasyAppDev.Blazor.Icons.MaterialDesign.MdHome style="color: currentColor;" />
 ```
 
 #### Animations & Effects
@@ -173,14 +179,14 @@ Icons support all standard CSS styling. Icons inherit size and color from their 
 
 <!-- Spinning animation -->
 <div style="animation: spin 1s linear infinite;">
-    <Loader />
+    <LuLoader />
 </div>
 
 <!-- Hover effects -->
-<Activity class="icon-hover" />
+<LuActivity class="icon-hover" />
 
 <!-- Fade in/out -->
-<Activity style="opacity: 0.7; transition: opacity 0.3s;" />
+<LuActivity style="opacity: 0.7; transition: opacity 0.3s;" />
 ```
 
 CSS for animations:
@@ -212,7 +218,7 @@ CSS for animations:
 @using EasyAppDev.Blazor.Icons.Lucide
 
 <!-- Mobile and desktop sizes -->
-<Activity class="icon-responsive" />
+<LuActivity class="icon-responsive" />
 ```
 
 ```css
@@ -249,17 +255,17 @@ CSS for animations:
 ```razor
 @using EasyAppDev.Blazor.Icons.Lucide
 
-<Activity class="icon-styled" />
+<LuActivity class="icon-styled" />
 ```
 
 ### Accessibility
 
 ```razor
 <!-- Decorative icon (default) -->
-<Activity />
+<LuActivity />
 
 <!-- Icon with semantic meaning -->
-<Activity AriaLabel="Loading activity" />
+<LuActivity AriaLabel="Loading activity" />
 ```
 
 ### Available Icon Sets
@@ -276,84 +282,79 @@ CSS for animations:
   - Namespace: `EasyAppDev.Blazor.Icons.MaterialDesign`
   - Defaults: Filled style with `currentColor`
 
-### Handling Naming Conflicts
+### Icon Naming Convention
 
-Icon names are isolated within their own namespaces, so icons with the same name across different libraries don't conflict. For example, many icon sets include a `Home` or `Activity` icon:
+All icons are prefixed to prevent naming conflicts:
+- **Lucide icons**: `Lu` prefix (e.g., `LuHome`, `LuActivity`)
+- **Bootstrap icons**: `Bi` prefix (e.g., `BiHome`, `BiHouse`)
+- **Material Design icons**: `Md` prefix (e.g., `MdHome`, `MdMenu`)
 
-#### Using Single Library
+This prevents conflicts with:
+- Your own components (e.g., your `Home.razor` vs `LuHome` icon)
+- Other icon libraries (e.g., `LuHome` vs `BiHouse` vs `MdHome`)
 
-If you use only one icon library, there are no conflicts:
+#### Using Multiple Libraries Together
+
+Thanks to prefixes, you can use simple `@using` statements for all libraries:
 
 ```razor
 @using EasyAppDev.Blazor.Icons.Lucide
+@using EasyAppDev.Blazor.Icons.Bootstrap
+@using EasyAppDev.Blazor.Icons.MaterialDesign
 
-<!-- This works - no ambiguity -->
-<Home />
-<Activity />
+<!-- No conflicts - prefixes make each icon unique -->
+<LuHome />      <!-- Lucide -->
+<BiHouse />     <!-- Bootstrap -->
+<MdHome />      <!-- Material Design -->
 ```
 
-#### Using Multiple Libraries
+#### Alternative: Fully Qualified Names
 
-When using multiple icon libraries, you have two options to avoid naming conflicts:
-
-**Option 1: Use fully qualified names (recommended)**
+You can also use fully qualified names without `@using` statements:
 
 ```razor
 <!-- No using statements needed -->
-<EasyAppDev.Blazor.Icons.Lucide.Home />
-<EasyAppDev.Blazor.Icons.Bootstrap.House />
-<EasyAppDev.Blazor.Icons.MaterialDesign.Home />
+<EasyAppDev.Blazor.Icons.Lucide.LuHome />
+<EasyAppDev.Blazor.Icons.Bootstrap.BiHouse />
+<EasyAppDev.Blazor.Icons.MaterialDesign.MdHome />
 ```
 
-**Option 2: Mix using statements with fully qualified names**
+#### ⚠️ CRITICAL: Namespace Aliases Break Trimming
+
+**DO NOT use namespace aliases** - this prevents trimming:
 
 ```razor
-@using EasyAppDev.Blazor.Icons.Lucide
-
-<!-- Lucide icons with short names (after @using) -->
-<Home />
-<Activity />
-
-<!-- Other libraries with fully qualified names to avoid conflicts -->
-<EasyAppDev.Blazor.Icons.Bootstrap.House />
-<EasyAppDev.Blazor.Icons.MaterialDesign.Home />
-```
-
-**⚠️ CRITICAL: Namespace Alias Syntax Does Not Work**
-
-**DO NOT use namespace aliases** like this:
-```razor
+<!-- ❌ WRONG - Breaks trimming! -->
 @using Lucide = EasyAppDev.Blazor.Icons.Lucide
-<Lucide.Activity />  <!-- ❌ WRONG - Breaks trimming! -->
+<Lucide.LuActivity />
 ```
 
-This syntax causes the Razor compiler to treat icons as HTML elements instead of components, which:
+This syntax causes the Razor compiler to treat icons as HTML elements instead of components:
 - Generates RZ10012 warnings during build
-- **Prevents trimming from working** (all icons will be included)
-- Results in 14MB+ overhead instead of ~6KB
+- **Prevents trimming from working** (all 11,000+ icons will be included)
+- Results in 14.8MB overhead instead of ~6KB
 
-**✅ CORRECT approaches:**
+**✅ CORRECT - Trimming works:**
 
 ```razor
-<!-- Option 1: Direct namespace import -->
+<!-- Option 1: Direct namespace import (recommended) -->
 @using EasyAppDev.Blazor.Icons.Lucide
-<Activity />  <!-- ✅ Works perfectly -->
+<LuActivity />
 
 <!-- Option 2: Fully qualified names -->
-<EasyAppDev.Blazor.Icons.Lucide.Activity />  <!-- ✅ Works perfectly -->
+<EasyAppDev.Blazor.Icons.Lucide.LuActivity />
 ```
 
-**How to verify trimming will work:**
-- Build your Blazor WebAssembly project
-- Check for RZ10012 warnings about icon components
-- If you see warnings like "Found markup element with unexpected name", trimming will NOT work properly
-- Fix by using the correct syntax above
+**Verify trimming will work:**
+- Build your project and check for RZ10012 warnings
+- If you see "Found markup element with unexpected name", trimming will NOT work
+- Fix by using correct syntax above
 
 #### Best Practices
 
-- **For single icon library projects**: Use `@using` for clean, concise code
-- **For multi-library projects**: Use fully qualified names or mix approaches as shown above
-- **For shared components**: Use fully qualified names for clarity and maintainability
+- **Recommended**: Use `@using` statements for clean, concise code - prefixes prevent conflicts
+- **For shared components**: Consider fully qualified names for extra clarity
+- **Global imports**: Add common libraries to `_Imports.razor` for use across all pages
 
 ## How It Works
 
@@ -380,8 +381,8 @@ EasyAppDev.Blazor.Icons/
 ├── src/
 │   ├── EasyAppDev.Blazor.Icons.Lucide/           # Lucide icon package
 │   │   ├── Components/                             # 1,539 physical component files
-│   │   │   ├── Activity.cs
-│   │   │   ├── Home.cs
+│   │   │   ├── LuActivity.cs
+│   │   │   ├── LuHome.cs
 │   │   │   └── ... (1,539 total)
 │   │   └── EasyAppDev.Blazor.Icons.Lucide.csproj
 │   ├── EasyAppDev.Blazor.Icons.Bootstrap/        # Bootstrap icon package
@@ -469,9 +470,9 @@ ls -lh samples/EasyAppDev.Blazor.Icons.Sample/EasyAppDev.Blazor.Icons.Sample.Cli
 
 | Status | Icon Libraries | Size | Notes |
 |--------|---------------|------|-------|
-| **Development Build** (Debug) | Separate DLL files | Lucide: ~1.5MB<br>Bootstrap: ~1.9MB<br>MaterialDesign: ~5.7MB | Full libraries for development |
-| **Published (Release)** with `TrimMode=full` | **Merged into client assembly** | Client assembly: ~6KB overhead | Icon libraries completely trimmed and merged |
-| **Published without proper syntax** | Separate WASM files | ~14MB total overhead | ❌ Trimming failed - check for RZ10012 warnings |
+| **Development Build** (Release) | Separate DLL files | Lucide: ~1.6MB<br>Bootstrap: ~3.2MB<br>MaterialDesign: ~10MB<br>**Total: 14.8MB** | Full libraries for development |
+| **Published (Release)** with trimming | **Merged into client assembly** | Client assembly: ~6KB overhead<br>Brotli compressed: ~2.3KB | Icon libraries completely trimmed and merged |
+| **Published without proper syntax** | Separate WASM files | ~14.8MB total overhead | ❌ Trimming failed - check for RZ10012 warnings |
 
 **Signs trimming is working:**
 - ✅ No RZ10012 warnings during build
@@ -502,51 +503,52 @@ The library achieves true trimming through:
 - With `TrimMode=full`, the trimmer merges used icons into your client assembly and discards unused ones
 
 **Trimming Process:**
-1. **Development**: All icon libraries compiled as separate DLLs (~9MB total)
+1. **Development**: All icon libraries compiled as separate DLLs (~14.8MB total)
 2. **Build Analysis**: Razor compiler identifies which icon components are referenced
 3. **Publish with Trimming**: .NET IL Linker analyzes references
 4. **Merge & Trim**: Used icons inlined into client assembly, unused icons discarded
-5. **Result**: Only ~6KB overhead for icon functionality (99.96% reduction)
+5. **Result**: Only ~6KB overhead for icon functionality (99.96% reduction from 14.8MB)
 
 **What works (trims properly)**:
 ```razor
 @using EasyAppDev.Blazor.Icons.Lucide
 
 <!-- Direct reference - will be trimmed if not used -->
-<Activity />
-<Home />
+<LuActivity />
+<LuHome />
 
 <!-- Or with fully qualified names -->
-<EasyAppDev.Blazor.Icons.Lucide.Activity />
-<EasyAppDev.Blazor.Icons.Bootstrap.House />
+<EasyAppDev.Blazor.Icons.Lucide.LuActivity />
+<EasyAppDev.Blazor.Icons.Bootstrap.BiHouse />
 ```
 
 **What doesn't work for trimming**:
 ```csharp
 // Dynamic lookups prevent trimming - keeps all icons
-var iconType = Type.GetType("EasyAppDev.Blazor.Icons.Lucide.Activity");
+var iconType = Type.GetType("EasyAppDev.Blazor.Icons.Lucide.LuActivity");
 ```
 
 ## Performance
 
 - **Build time**: ~5-10 seconds (first build compiles all components, incremental builds <1 second)
-- **Icon library sizes (Development/Debug)**:
-  - Lucide: ~1.5MB (1,539 icons)
-  - Bootstrap: ~1.9MB (2,078 icons)
-  - MaterialDesign: ~5.7MB (7,447 icons)
-  - Total: ~9MB for all three libraries
+- **Icon library sizes (Development/Release)**:
+  - Lucide: ~1.6MB (1,539 icons)
+  - Bootstrap: ~3.2MB (2,078 icons)
+  - MaterialDesign: ~10MB (7,447 icons)
+  - Total: ~14.8MB for all three libraries
 - **Published app (Release with trimming)**:
   - Icon overhead: **~6KB** (only referenced icons merged into client assembly)
-  - Trimming effectiveness: **99.96% reduction** (9MB → 6KB)
+  - Compressed (Brotli): **~2.3KB**
+  - Trimming effectiveness: **99.96% reduction** (14.8MB → 6KB)
   - Icon library WASM files: **Not present** (merged and trimmed)
-- **Typical usage** (80 icons from multiple libraries): ~6-10KB overhead
+- **Typical usage** (60 icons from multiple libraries): ~6KB overhead
 - **Runtime**: Zero overhead - just sealed component classes with embedded SVG
 - **Network**: Zero HTTP requests - all SVG content embedded in compiled code
 
-**Real-world example** (sample app with ~80 icons from all three libraries):
-- Development build: 9MB+ icon libraries
-- Published (trimmed): 6KB icon overhead
-- Reduction: 99.93%
+**Real-world example** (sample app with ~60 icons from all three libraries):
+- Development build: 14.8MB icon libraries
+- Published (trimmed): 6.3KB icon overhead (2.3KB Brotli compressed)
+- Reduction: 99.96%
 
 ## Contributing
 
@@ -596,20 +598,23 @@ For best trimming, always reference icons directly. Dynamic loading via `Type.Ge
 
 ### I'm seeing RZ10012 warnings - what does this mean?
 
-RZ10012 warnings like "Found markup element with unexpected name 'Lucide.Activity'" mean:
+RZ10012 warnings like "Found markup element with unexpected name 'Lucide.LuActivity'" mean:
 - The Razor compiler doesn't recognize your icons as components
-- **Trimming will NOT work** - all icons will be included in published output (~14MB overhead)
-- You're likely using namespace alias syntax (`@using Lucide = ...`)
+- **Trimming will NOT work** - all icons will be included in published output (~14.8MB overhead instead of ~6KB)
+- You're using namespace alias syntax (`@using Lucide = ...`)
 
-**Fix:** Use direct namespace imports instead:
+**Fix:** Use direct namespace imports or fully qualified names:
 ```razor
 <!-- ❌ WRONG - causes RZ10012 warnings -->
 @using Lucide = EasyAppDev.Blazor.Icons.Lucide
-<Lucide.Activity />
+<Lucide.LuActivity />
 
-<!-- ✅ CORRECT - no warnings, trimming works -->
+<!-- ✅ CORRECT - Option 1: Direct import -->
 @using EasyAppDev.Blazor.Icons.Lucide
-<Activity />
+<LuActivity />
+
+<!-- ✅ CORRECT - Option 2: Fully qualified -->
+<EasyAppDev.Blazor.Icons.Lucide.LuActivity />
 ```
 
 After fixing, rebuild and verify there are no RZ10012 warnings in your build output.

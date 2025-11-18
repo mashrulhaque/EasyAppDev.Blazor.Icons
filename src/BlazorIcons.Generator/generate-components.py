@@ -19,6 +19,7 @@ ICON_SETS = {
     "lucide": {
         "namespace": "EasyAppDev.Blazor.Icons.Lucide",
         "package_dir": "EasyAppDev.Blazor.Icons.Lucide",
+        "prefix": "Lu",
         "viewbox": "0 0 24 24",
         "fill": "none",
         "stroke": "currentColor",
@@ -29,6 +30,7 @@ ICON_SETS = {
     "bootstrap": {
         "namespace": "EasyAppDev.Blazor.Icons.Bootstrap",
         "package_dir": "EasyAppDev.Blazor.Icons.Bootstrap",
+        "prefix": "Bi",
         "viewbox": "0 0 16 16",
         "fill": "currentColor",
         "stroke": None,
@@ -39,6 +41,7 @@ ICON_SETS = {
     "material-design": {
         "namespace": "EasyAppDev.Blazor.Icons.MaterialDesign",
         "package_dir": "EasyAppDev.Blazor.Icons.MaterialDesign",
+        "prefix": "Md",
         "viewbox": "0 0 24 24",
         "fill": "currentColor",
         "stroke": None,
@@ -139,13 +142,16 @@ def validate_icon_name(name: str) -> Optional[str]:
     return None
 
 
-def convert_to_valid_identifier(name: str) -> str:
-    """Convert filename to valid C# identifier"""
+def convert_to_valid_identifier(name: str, prefix: str = "") -> str:
+    """Convert filename to valid C# identifier with optional prefix"""
     name = Path(name).stem
     parts = name.split('-')
     result = ''.join(part.capitalize() for part in parts)
     if result and result[0].isdigit():
         result = f"_{result}"
+    # Prepend prefix if provided
+    if prefix:
+        result = f"{prefix}{result}"
     return result
 
 
@@ -292,7 +298,7 @@ def generate_components_for_library(
             print(f"  Progress: {idx}/{total_files} ({idx*100//total_files}%)")
 
         # Validate icon name
-        icon_name = convert_to_valid_identifier(svg_file.name)
+        icon_name = convert_to_valid_identifier(svg_file.name, config.get('prefix', ''))
         validation_error = validate_icon_name(svg_file.stem)
         if validation_error:
             print(f"ERROR: {validation_error}")

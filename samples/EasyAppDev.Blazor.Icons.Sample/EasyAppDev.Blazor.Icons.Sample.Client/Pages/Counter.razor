@@ -1,6 +1,5 @@
 ﻿@page "/counter"
 @rendermode InteractiveAuto
-@using EasyAppDev.Blazor.Icons.Lucide
 
 <PageTitle>Counter - EasyAppDev.Blazor.Icons</PageTitle>
 
@@ -67,7 +66,7 @@
         <div class="icon-row">
             @for (int i = 0; i < Math.Min(currentCount, 10); i++)
             {
-                <Star style="width: 24px; height: 24px;" class="@(i == currentCount - 1 ? "animated-icon" : "")" />
+                <LuStar style="width: 24px; height: 24px;" class="@(i == currentCount - 1 ? "animated-icon" : "")" />
             }
             @if (currentCount > 10)
             {
@@ -77,7 +76,7 @@
     </div>
 
     <button class="btn-custom" @onclick="IncrementCount">
-        <Plus style="width: 24px; height: 24px;" />
+        <LuPlus style="width: 24px; height: 24px;" />
         <span>Increment Counter</span>
     </button>
 
@@ -97,19 +96,19 @@
 
     <div style="display: flex; justify-content: space-around; align-items: center; margin: 2rem 0;">
         <div style="text-align: center;">
-            <Star style="width: 16px; height: 16px; color: #ffc107;" />
+            <LuStar style="width: 16px; height: 16px; color: #ffc107;" />
             <br/><small>16px</small>
         </div>
         <div style="text-align: center;">
-            <Star style="width: 24px; height: 24px; color: #ffc107;" />
+            <LuStar style="width: 24px; height: 24px; color: #ffc107;" />
             <br/><small>24px</small>
         </div>
         <div style="text-align: center;">
-            <Star style="width: 32px; height: 32px; color: #ffc107;" />
+            <LuStar style="width: 32px; height: 32px; color: #ffc107;" />
             <br/><small>32px</small>
         </div>
         <div style="text-align: center;">
-            <Star style="width: 48px; height: 48px; color: #ffc107;" />
+            <LuStar style="width: 48px; height: 48px; color: #ffc107;" />
             <br/><small>48px</small>
         </div>
     </div>
