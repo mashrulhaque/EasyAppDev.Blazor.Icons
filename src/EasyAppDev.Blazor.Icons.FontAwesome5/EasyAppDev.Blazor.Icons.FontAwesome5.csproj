@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 
@@ -30,7 +30,11 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Contact>info@easyappdev.com</Contact>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon-fontawesome5.png</PackageIcon>
     <PackageReleaseNotes>
+Version 2.0.1:
+- Added package icon for better NuGet visibility
+
 Version 2.0.0:
 - Initial release of FontAwesome 5 package
 - 1,611 icons across three styles: Solid, Regular, and Brands
@@ -46,11 +50,13 @@ Version 2.0.0:
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.11" Condition="'$(TargetFramework)' == 'net8.0'" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.5" Condition="'$(TargetFramework)' == 'net9.0'" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="../../README.md" Pack="true" PackagePath="\"/>
+    <None Include="../../icon-fontawesome5.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>

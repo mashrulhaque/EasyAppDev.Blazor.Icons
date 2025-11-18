@@ -11,6 +11,7 @@ A fully trimmable Blazor icon library with 14,700+ icons from Lucide, Bootstrap,
 
 ## Features
 
+- **Multi-Target Support**: Compatible with both .NET 8.0 and .NET 9.0
 - **True Trimming**: Only icons you directly reference are included in published output (~6KB uncompressed, ~2.3KB Brotli, **99.96% reduction** from full library)
 - **Prefix-Based Naming**: All icons use library prefixes (Lu/Bi/Md/Fa5/Fa6) - no naming conflicts with your components
 - **Physical Components**: Individual sealed ComponentBase classes (14,735 total)
@@ -420,7 +421,7 @@ EasyAppDev.Blazor.Icons/
 
 ### Prerequisites
 
-- .NET 9 SDK
+- .NET 8.0 or .NET 9.0 SDK
 - Python 3.x (only needed if regenerating icon data from SVGs)
 
 ### Build Steps
@@ -608,7 +609,7 @@ You can install multiple packages together if needed.
 
 ### Does this work with Blazor Server, WebAssembly, and Hybrid?
 
-Yes! The library works with all Blazor hosting models. Icons are embedded in compiled components.
+Yes! The library works with all Blazor hosting models on both .NET 8.0 and .NET 9.0. Icons are embedded in compiled components.
 
 ### Can I use icons dynamically?
 
