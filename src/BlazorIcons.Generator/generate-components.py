@@ -70,6 +70,18 @@ ICON_SETS = {
         "stroke_width": None,
         "stroke_linecap": None,
         "stroke_linejoin": None
+    },
+    "fluentui": {
+        "namespace": "EasyAppDev.Blazor.Icons.FluentUI",
+        "package_dir": "EasyAppDev.Blazor.Icons.FluentUI",
+        "prefix": "Fl",
+        "viewbox": "0 0 24 24",
+        "fill": "currentColor",
+        "stroke": None,
+        "stroke_width": None,
+        "stroke_linecap": None,
+        "stroke_linejoin": None,
+        "strip_suffix": "_24"  # Special handling for FluentUI naming (e.g., home_24_filled.svg -> FlHome)
     }
 }
 
@@ -164,16 +176,27 @@ def validate_icon_name(name: str) -> Optional[str]:
     return None
 
 
-def convert_to_valid_identifier(name: str, prefix: str = "") -> str:
-    """Convert filename to valid C# identifier with optional prefix"""
+def convert_to_valid_identifier(name: str, prefix: str = "", strip_suffix: str = "") -> str:
+    """Convert filename to valid C# identifier with optional prefix and suffix stripping"""
     name = Path(name).stem
-    parts = name.split('-')
+
+    # Strip size/variant suffix if specified (e.g., _24_filled -> _filled)
+    if strip_suffix:
+        # For FluentUI: home_24_filled -> home_filled, home_24_regular -> home_regular
+        name = name.replace(strip_suffix + "_", "_")
+
+    # Split on both hyphen and underscore for conversion
+    # home_filled -> HomeFilled, arrow-right -> ArrowRight
+    parts = name.replace('_', '-').split('-')
     result = ''.join(part.capitalize() for part in parts)
+
     if result and result[0].isdigit():
         result = f"_{result}"
+
     # Prepend prefix if provided
     if prefix:
         result = f"{prefix}{result}"
+
     return result
 
 
@@ -320,7 +343,11 @@ def generate_components_for_library(
             print(f"  Progress: {idx}/{total_files} ({idx*100//total_files}%)")
 
         # Validate icon name
-        icon_name = convert_to_valid_identifier(svg_file.name, config.get('prefix', ''))
+        icon_name = convert_to_valid_identifier(
+            svg_file.name,
+            config.get('prefix', ''),
+            config.get('strip_suffix', '')
+        )
         validation_error = validate_icon_name(svg_file.stem)
         if validation_error:
             print(f"ERROR: {validation_error}")

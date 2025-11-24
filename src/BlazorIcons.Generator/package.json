@@ -16,13 +16,15 @@
     "bootstrap",
     "material-design",
     "fontawesome",
+    "fluentui",
     "generator"
   ],
   "dependencies": {
-    "lucide-static": "^0.460.0",
-    "bootstrap-icons": "^1.11.3",
-    "@mdi/svg": "^7.4.47",
+    "@fluentui/svg-icons": "^1.1.315",
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "@fortawesome/fontawesome-free-v5": "npm:@fortawesome/fontawesome-free@5.15.4",
-    "@fortawesome/fontawesome-free": "^6.7.2"
+    "@mdi/svg": "^7.4.47",
+    "bootstrap-icons": "^1.11.3",
+    "lucide-static": "^0.460.0"
   }
 }

@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAppDev.Blazor.Icons.Sam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAppDev.Blazor.Icons.Sample.Client", "samples\EasyAppDev.Blazor.Icons.Sample\EasyAppDev.Blazor.Icons.Sample.Client\EasyAppDev.Blazor.Icons.Sample.Client.csproj", "{6DE2BB13-4DEC-474F-8553-E187DB025C17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAppDev.Blazor.Icons.FluentUI", "src\EasyAppDev.Blazor.Icons.FluentUI\EasyAppDev.Blazor.Icons.FluentUI.csproj", "{9594E8DE-E069-4A40-A343-38BAFEFE3868}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +129,18 @@ Global
 		{6DE2BB13-4DEC-474F-8553-E187DB025C17}.Release|x64.Build.0 = Release|Any CPU
 		{6DE2BB13-4DEC-474F-8553-E187DB025C17}.Release|x86.ActiveCfg = Release|Any CPU
 		{6DE2BB13-4DEC-474F-8553-E187DB025C17}.Release|x86.Build.0 = Release|Any CPU
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868}.Debug|x64.Build.0 = Debug|Any CPU
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868}.Debug|x86.Build.0 = Debug|Any CPU
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868}.Release|x64.ActiveCfg = Release|Any CPU
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868}.Release|x64.Build.0 = Release|Any CPU
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868}.Release|x86.ActiveCfg = Release|Any CPU
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,5 +154,6 @@ Global
 		{E5F6A7B8-C9DA-4BEC-DF4A-5B6C7D8E9FA0} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{177A096F-1CEF-495E-80AA-281F868E9845} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{6DE2BB13-4DEC-474F-8553-E187DB025C17} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{9594E8DE-E069-4A40-A343-38BAFEFE3868} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal
