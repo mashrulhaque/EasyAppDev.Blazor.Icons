@@ -5,20 +5,93 @@
 [![NuGet](https://img.shields.io/nuget/v/EasyAppDev.Blazor.Icons.MaterialDesign.svg)](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.MaterialDesign/)
 [![NuGet](https://img.shields.io/nuget/v/EasyAppDev.Blazor.Icons.FontAwesome5.svg)](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.FontAwesome5/)
 [![NuGet](https://img.shields.io/nuget/v/EasyAppDev.Blazor.Icons.FontAwesome6.svg)](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.FontAwesome6/)
+[![NuGet](https://img.shields.io/nuget/v/EasyAppDev.Blazor.Icons.FluentUI.svg)](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.FluentUI/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A fully trimmable Blazor icon library with 14,700+ icons from Lucide, Bootstrap, Material Design, FontAwesome 5, and FontAwesome 6. Physical component files enable true trimming - only icons you reference are included in your published output.
+A fully trimmable Blazor icon library with 18,000+ icons from Lucide, Bootstrap, Material Design, FontAwesome 5, FontAwesome 6, and FluentUI. Physical component files enable true trimming - only icons you reference are included in your published output.
+
+## Quick Start
+
+```bash
+# 1. Install the icon library you want
+dotnet add package EasyAppDev.Blazor.Icons.Lucide
+
+# 2. Add using statement to your Razor component or _Imports.razor
+@using EasyAppDev.Blazor.Icons.Lucide
+
+# 3. Use icons directly in your markup
+<LuHome />
+<LuActivity />
+<LuSettings />
+```
+
+That's it! No configuration, no services, no setup. Just install and use.
+
+## Icon Library Samples
+
+Here are examples from each icon library to help you get started:
+
+```razor
+@using EasyAppDev.Blazor.Icons.Lucide
+@using EasyAppDev.Blazor.Icons.Bootstrap
+@using EasyAppDev.Blazor.Icons.MaterialDesign
+@using EasyAppDev.Blazor.Icons.FontAwesome5
+@using EasyAppDev.Blazor.Icons.FontAwesome6
+@using EasyAppDev.Blazor.Icons.FluentUI
+
+<!-- Lucide - Modern outline icons -->
+<LuHome />
+<LuActivity />
+<LuSettings />
+<LuUser />
+
+<!-- Bootstrap - Clean filled icons -->
+<BiHouse />
+<BiPerson />
+<BiGear />
+<BiHeart />
+
+<!-- Material Design - Google's Material icons -->
+<MdHome />
+<MdPerson />
+<MdSettings />
+<MdFavorite />
+
+<!-- FontAwesome 5 - Multiple variants -->
+<Fa5SolidHome />
+<Fa5RegularHeart />
+<Fa5BrandsTwitter />
+<Fa5BrandsGithub />
+
+<!-- FontAwesome 6 - Latest FontAwesome -->
+<Fa6SolidHome />
+<Fa6RegularStar />
+<Fa6BrandsDiscord />
+<Fa6BrandsTwitter />
+
+<!-- FluentUI - Microsoft's Fluent Design -->
+<FiHome24Regular />
+<FiPerson24Filled />
+<FiSettings24Regular />
+<FiApps24Regular />
+```
+
+**Pro tip**: All icons support standard CSS styling:
+```razor
+<LuHome style="color: blue; width: 32px; height: 32px;" />
+<BiHeart class="text-danger icon-lg" />
+```
 
 ## Features
 
 - **Multi-Target Support**: Compatible with both .NET 8.0 and .NET 9.0
 - **True Trimming**: Only icons you directly reference are included in published output (~6KB uncompressed, ~2.3KB Brotli, **99.96% reduction** from full library)
-- **Prefix-Based Naming**: All icons use library prefixes (Lu/Bi/Md/Fa5/Fa6) - no naming conflicts with your components
-- **Physical Components**: Individual sealed ComponentBase classes (14,735 total)
+- **Prefix-Based Naming**: All icons use library prefixes (Lu/Bi/Md/Fa5/Fa6/Fi) - no naming conflicts with your components
+- **Physical Components**: Individual sealed ComponentBase classes (18,000+ total)
 - **Zero Runtime Overhead**: No reflection, no HTTP calls, no dictionaries - just compiled code
 - **Fully Embedded**: SVG content embedded directly in component code
 - **Type-Safe**: Full compile-time checking with direct component references
-- **Full IntelliSense**: Complete autocomplete and intellisense for all 14,700+ icons in your IDE
+- **Full IntelliSense**: Complete autocomplete and intellisense for all 18,000+ icons in your IDE
 - **CSS Controllable**: Style icons with standard CSS properties (color, width, height, etc.)
 - **Separate Packages**: Choose only the icon libraries you need:
   - `EasyAppDev.Blazor.Icons.Lucide` (~1,500 icons, 1.6MB)
@@ -26,6 +99,7 @@ A fully trimmable Blazor icon library with 14,700+ icons from Lucide, Bootstrap,
   - `EasyAppDev.Blazor.Icons.MaterialDesign` (~7,400 icons, 10MB)
   - `EasyAppDev.Blazor.Icons.FontAwesome5` (~1,600 icons, 2.5MB)
   - `EasyAppDev.Blazor.Icons.FontAwesome6` (~2,000 icons, 3.2MB)
+  - `EasyAppDev.Blazor.Icons.FluentUI` (~3,000 icons, 4MB)
 - **Fast Builds**: Incremental builds leverage existing compiled components
 
 ## Usage
@@ -35,13 +109,13 @@ A fully trimmable Blazor icon library with 14,700+ icons from Lucide, Bootstrap,
 Install only the icon libraries you need:
 
 ```bash
-# Lucide icons (~1,500 icons)
+# Lucide icons (~1,500 icons - modern, consistent outline icons)
 dotnet add package EasyAppDev.Blazor.Icons.Lucide
 
-# Bootstrap icons (~2,000 icons)
+# Bootstrap icons (~2,000 icons - clean, simple filled icons)
 dotnet add package EasyAppDev.Blazor.Icons.Bootstrap
 
-# Material Design icons (~7,400 icons)
+# Material Design icons (~7,400 icons - Google's Material Design)
 dotnet add package EasyAppDev.Blazor.Icons.MaterialDesign
 
 # FontAwesome 5 icons (~1,600 icons - solid, regular, brands)
@@ -50,22 +124,24 @@ dotnet add package EasyAppDev.Blazor.Icons.FontAwesome5
 # FontAwesome 6 icons (~2,000 icons - solid, regular, brands)
 dotnet add package EasyAppDev.Blazor.Icons.FontAwesome6
 
-# Or install multiple:
+# FluentUI icons (~3,000 icons - Microsoft's Fluent Design System)
+dotnet add package EasyAppDev.Blazor.Icons.FluentUI
+
+# Or install multiple packages together
 dotnet add package EasyAppDev.Blazor.Icons.Lucide
-dotnet add package EasyAppDev.Blazor.Icons.FontAwesome6
+dotnet add package EasyAppDev.Blazor.Icons.FluentUI
 ```
 
 ### Package Versions
 
-Current versions of available packages:
-
-| Package | Version | NuGet | Icons | Development Size | Published Size (Trimmed) |
-|---------|---------|-------|-------|-----------------|-------------------------|
-| `EasyAppDev.Blazor.Icons.Lucide` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Lucide/) | ~1,500 | ~1.6MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.Bootstrap` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.Bootstrap/) | ~2,000 | ~3.2MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.MaterialDesign` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.MaterialDesign/) | ~7,400 | ~10MB | **~2-5KB** ✨ |
-| `EasyAppDev.Blazor.Icons.FontAwesome5` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.FontAwesome5/) | ~1,600 | ~2.5MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.FontAwesome6` | 2.0.0 | [Install](https://www.nuget.org/packages/EasyAppDev.Blazor.Icons.FontAwesome6/) | ~2,000 | ~3.2MB | **~2-4KB** ✨ |
+| Package | Version | Icons | Development Size | Published Size (Trimmed) |
+|---------|---------|-------|-----------------|-------------------------|
+| `EasyAppDev.Blazor.Icons.Lucide` | 2.0.1 | ~1,500 | ~1.6MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.Bootstrap` | 2.0.1 | ~2,000 | ~3.2MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.MaterialDesign` | 2.0.1 | ~7,400 | ~10MB | **~2-5KB** ✨ |
+| `EasyAppDev.Blazor.Icons.FontAwesome5` | 2.0.1 | ~1,600 | ~2.5MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.FontAwesome6` | 2.0.1 | ~2,000 | ~3.2MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.FluentUI` | 2.0.1 | ~3,000 | ~4MB | **~2-4KB** ✨ |
 
 **Trimming is extremely effective!** With proper syntax (see warning below), published apps include only referenced icons. Typical apps using 50-100 icons from all libraries result in only **~6KB total overhead** (99.96% reduction).
 
@@ -93,6 +169,7 @@ No configuration needed! Just add using statements and reference icons directly.
 @using EasyAppDev.Blazor.Icons.MaterialDesign
 @using EasyAppDev.Blazor.Icons.FontAwesome5
 @using EasyAppDev.Blazor.Icons.FontAwesome6
+@using EasyAppDev.Blazor.Icons.FluentUI
 
 <h1>My Page</h1>
 
@@ -102,12 +179,14 @@ No configuration needed! Just add using statements and reference icons directly.
 <MdHome />           <!-- Material Design home icon -->
 <Fa5SolidHome />     <!-- FontAwesome 5 solid home icon -->
 <Fa6SolidHome />     <!-- FontAwesome 6 solid home icon -->
+<FiHome24Regular />  <!-- FluentUI home icon (24px, regular weight) -->
 
 <LuActivity />       <!-- Lucide -->
 <BiPerson />         <!-- Bootstrap -->
 <MdSettings />       <!-- Material Design -->
 <Fa5BrandsTwitter /> <!-- FontAwesome 5 brands -->
 <Fa6RegularHeart />  <!-- FontAwesome 6 regular -->
+<FiPerson24Filled /> <!-- FluentUI person icon (24px, filled) -->
 ```
 
 **Alternative: Use fully qualified names** (if you prefer):
@@ -120,6 +199,7 @@ No configuration needed! Just add using statements and reference icons directly.
 <EasyAppDev.Blazor.Icons.Lucide.LuActivity />
 <EasyAppDev.Blazor.Icons.Bootstrap.BiHouse />
 <EasyAppDev.Blazor.Icons.MaterialDesign.MdHome />
+<EasyAppDev.Blazor.Icons.FluentUI.FiHome24Regular />
 ```
 
 **⚠️ IMPORTANT: Do NOT use namespace aliases** - this breaks trimming:
@@ -289,56 +369,38 @@ CSS for animations:
 
 ### Available Icon Sets
 
-- **Lucide** (~1,500 icons): Modern, consistent design system
+- **Lucide** (~1,500 icons): Modern, consistent outline icons
   - Namespace: `EasyAppDev.Blazor.Icons.Lucide`
-  - Defaults: Outline style with `currentColor` stroke
+  - Prefix: `Lu` (e.g., `LuHome`, `LuActivity`)
+  - Style: Outline with `currentColor` stroke
 
-- **Bootstrap** (~2,000 icons): Clean, simple Bootstrap icons
+- **Bootstrap** (~2,000 icons): Clean, simple filled icons
   - Namespace: `EasyAppDev.Blazor.Icons.Bootstrap`
-  - Defaults: Filled style with `currentColor`
+  - Prefix: `Bi` (e.g., `BiHome`, `BiHouse`)
+  - Style: Filled with `currentColor`
 
-- **Material Design** (~7,500 icons): Google's Material Design icons
+- **Material Design** (~7,400 icons): Google's Material Design icons
   - Namespace: `EasyAppDev.Blazor.Icons.MaterialDesign`
-  - Defaults: Filled style with `currentColor`
+  - Prefix: `Md` (e.g., `MdHome`, `MdMenu`)
+  - Style: Filled with `currentColor`
 
-### Icon Naming Convention
+- **FontAwesome 5** (~1,600 icons): Solid, regular, and brands
+  - Namespace: `EasyAppDev.Blazor.Icons.FontAwesome5`
+  - Prefix: `Fa5Solid`, `Fa5Regular`, `Fa5Brands` (e.g., `Fa5SolidHome`, `Fa5BrandsTwitter`)
+  - Style: Varies by variant (solid, regular, brands)
 
-All icons are prefixed to prevent naming conflicts:
-- **Lucide icons**: `Lu` prefix (e.g., `LuHome`, `LuActivity`)
-- **Bootstrap icons**: `Bi` prefix (e.g., `BiHome`, `BiHouse`)
-- **Material Design icons**: `Md` prefix (e.g., `MdHome`, `MdMenu`)
+- **FontAwesome 6** (~2,000 icons): Solid, regular, and brands
+  - Namespace: `EasyAppDev.Blazor.Icons.FontAwesome6`
+  - Prefix: `Fa6Solid`, `Fa6Regular`, `Fa6Brands` (e.g., `Fa6SolidHome`, `Fa6RegularHeart`)
+  - Style: Varies by variant (solid, regular, brands)
 
-This prevents conflicts with:
-- Your own components (e.g., your `Home.razor` vs `LuHome` icon)
-- Other icon libraries (e.g., `LuHome` vs `BiHouse` vs `MdHome`)
+- **FluentUI** (~3,000 icons): Microsoft's Fluent Design System
+  - Namespace: `EasyAppDev.Blazor.Icons.FluentUI`
+  - Prefix: `Fi` (e.g., `FiHome24Regular`, `FiPerson24Filled`)
+  - Style: Multiple sizes (16/20/24/28/32/48px) and weights (regular, filled)
+  - Naming pattern: `Fi{IconName}{Size}{Weight}` (e.g., `FiHome24Regular`, `FiSettings32Filled`)
 
-#### Using Multiple Libraries Together
-
-Thanks to prefixes, you can use simple `@using` statements for all libraries:
-
-```razor
-@using EasyAppDev.Blazor.Icons.Lucide
-@using EasyAppDev.Blazor.Icons.Bootstrap
-@using EasyAppDev.Blazor.Icons.MaterialDesign
-
-<!-- No conflicts - prefixes make each icon unique -->
-<LuHome />      <!-- Lucide -->
-<BiHouse />     <!-- Bootstrap -->
-<MdHome />      <!-- Material Design -->
-```
-
-#### Alternative: Fully Qualified Names
-
-You can also use fully qualified names without `@using` statements:
-
-```razor
-<!-- No using statements needed -->
-<EasyAppDev.Blazor.Icons.Lucide.LuHome />
-<EasyAppDev.Blazor.Icons.Bootstrap.BiHouse />
-<EasyAppDev.Blazor.Icons.MaterialDesign.MdHome />
-```
-
-#### ⚠️ CRITICAL: Namespace Aliases Break Trimming
+### ⚠️ CRITICAL: Namespace Aliases Break Trimming
 
 **DO NOT use namespace aliases** - this prevents trimming:
 
@@ -369,11 +431,28 @@ This syntax causes the Razor compiler to treat icons as HTML elements instead of
 - If you see "Found markup element with unexpected name", trimming will NOT work
 - Fix by using correct syntax above
 
-#### Best Practices
+### Best Practices
 
-- **Recommended**: Use `@using` statements for clean, concise code - prefixes prevent conflicts
-- **For shared components**: Consider fully qualified names for extra clarity
-- **Global imports**: Add common libraries to `_Imports.razor` for use across all pages
+**Recommended approach** - Use `@using` statements for clean code:
+```razor
+@using EasyAppDev.Blazor.Icons.Lucide
+<LuHome />
+```
+
+**Alternative** - Use fully qualified names for extra clarity:
+```razor
+<EasyAppDev.Blazor.Icons.Lucide.LuHome />
+```
+
+**Global imports** - Add to `_Imports.razor` for use across all pages:
+```razor
+@* _Imports.razor *@
+@using EasyAppDev.Blazor.Icons.Lucide
+@using EasyAppDev.Blazor.Icons.Bootstrap
+@using EasyAppDev.Blazor.Icons.MaterialDesign
+@using EasyAppDev.Blazor.Icons.FontAwesome6
+@using EasyAppDev.Blazor.Icons.FluentUI
+```
 
 ## How It Works
 
@@ -584,8 +663,10 @@ MIT License - see LICENSE file for details
 ## Acknowledgments
 
 - [Lucide Icons](https://lucide.dev/) - Beautiful open-source icon library
-- [Material Design Icons](https://fonts.google.com/icons) - Google's Material Design icons
 - [Bootstrap Icons](https://icons.getbootstrap.com/) - Official Bootstrap icon library
+- [Material Design Icons](https://fonts.google.com/icons) - Google's Material Design icons
+- [FontAwesome](https://fontawesome.com/) - The web's most popular icon set
+- [FluentUI System Icons](https://github.com/microsoft/fluentui-system-icons) - Microsoft's Fluent Design System icons
 
 ## FAQ
 
