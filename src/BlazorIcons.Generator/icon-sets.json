@@ -1,0 +1,52 @@
+{
+  "$schema": "./icon-sets.schema.json",
+  "iconSets": {
+    "lucide": {
+      "namespace": "EasyAppDev.Blazor.Icons.Lucide",
+      "packageDir": "EasyAppDev.Blazor.Icons.Lucide",
+      "prefix": "Lu",
+      "viewbox": "0 0 24 24",
+      "fill": "none",
+      "stroke": "currentColor",
+      "strokeWidth": "2",
+      "strokeLinecap": "round",
+      "strokeLinejoin": "round"
+    },
+    "bootstrap": {
+      "namespace": "EasyAppDev.Blazor.Icons.Bootstrap",
+      "packageDir": "EasyAppDev.Blazor.Icons.Bootstrap",
+      "prefix": "Bi",
+      "viewbox": "0 0 16 16",
+      "fill": "currentColor"
+    },
+    "material-design": {
+      "namespace": "EasyAppDev.Blazor.Icons.MaterialDesign",
+      "packageDir": "EasyAppDev.Blazor.Icons.MaterialDesign",
+      "prefix": "Md",
+      "viewbox": "0 0 24 24",
+      "fill": "currentColor"
+    },
+    "fontawesome5": {
+      "namespace": "EasyAppDev.Blazor.Icons.FontAwesome5",
+      "packageDir": "EasyAppDev.Blazor.Icons.FontAwesome5",
+      "prefix": "Fa5",
+      "viewbox": "0 0 512 512",
+      "fill": "currentColor"
+    },
+    "fontawesome6": {
+      "namespace": "EasyAppDev.Blazor.Icons.FontAwesome6",
+      "packageDir": "EasyAppDev.Blazor.Icons.FontAwesome6",
+      "prefix": "Fa6",
+      "viewbox": "0 0 512 512",
+      "fill": "currentColor"
+    },
+    "fluentui": {
+      "namespace": "EasyAppDev.Blazor.Icons.FluentUI",
+      "packageDir": "EasyAppDev.Blazor.Icons.FluentUI",
+      "prefix": "Fl",
+      "viewbox": "0 0 24 24",
+      "fill": "currentColor",
+      "stripSuffix": "_24"
+    }
+  }
+}

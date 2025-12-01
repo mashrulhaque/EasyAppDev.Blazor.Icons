@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Icon Sets Configuration",
+  "description": "Configuration for EasyAppDev.Blazor.Icons component generator",
+  "type": "object",
+  "required": ["iconSets"],
+  "properties": {
+    "iconSets": {
+      "type": "object",
+      "description": "Map of icon set names to their configurations",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["namespace", "packageDir", "prefix", "viewbox"],
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "description": "C# namespace for the generated components"
+          },
+          "packageDir": {
+            "type": "string",
+            "description": "Output package directory name (relative to src/)"
+          },
+          "prefix": {
+            "type": "string",
+            "description": "Prefix added to component class names (e.g., 'Lu' for Lucide)"
+          },
+          "viewbox": {
+            "type": "string",
+            "description": "SVG viewBox attribute value"
+          },
+          "fill": {
+            "type": "string",
+            "description": "Default fill attribute (e.g., 'currentColor', 'none')"
+          },
+          "stroke": {
+            "type": "string",
+            "description": "Default stroke attribute (e.g., 'currentColor')"
+          },
+          "strokeWidth": {
+            "type": "string",
+            "description": "Default stroke-width attribute"
+          },
+          "strokeLinecap": {
+            "type": "string",
+            "description": "Default stroke-linecap attribute (e.g., 'round')"
+          },
+          "strokeLinejoin": {
+            "type": "string",
+            "description": "Default stroke-linejoin attribute (e.g., 'round')"
+          },
+          "stripSuffix": {
+            "type": "string",
+            "description": "Suffix to strip from filenames before conversion (e.g., '_24' for FluentUI)"
+          }
+        }
+      }
+    }
+  }
+}

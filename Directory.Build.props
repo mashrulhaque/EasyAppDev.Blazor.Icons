@@ -50,6 +50,37 @@
     <NoWarn>$(NoWarn);1591</NoWarn> <!-- Disable XML documentation warnings -->
   </PropertyGroup>
 
+  <!-- Common settings for icon library packages -->
+  <PropertyGroup Condition="$(MSBuildProjectName.StartsWith('EasyAppDev.Blazor.Icons.')) AND '$(MSBuildProjectName)' != 'EasyAppDev.Blazor.Icons.Sample' AND '$(MSBuildProjectName)' != 'EasyAppDev.Blazor.Icons.Sample.Client'">
+    <!-- Multi-target Framework -->
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+
+    <!-- Trimming Configuration - enables true tree-shaking -->
+    <IsTrimmable>true</IsTrimmable>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <TrimMode>link</TrimMode>
+
+    <!-- SourceLink Configuration -->
+    <DebugType>embedded</DebugType>
+
+    <!-- Include README in package -->
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <!-- Common dependencies for icon library packages -->
+  <ItemGroup Condition="$(MSBuildProjectName.StartsWith('EasyAppDev.Blazor.Icons.')) AND '$(MSBuildProjectName)' != 'EasyAppDev.Blazor.Icons.Sample' AND '$(MSBuildProjectName)' != 'EasyAppDev.Blazor.Icons.Sample.Client'">
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(MSBuildProjectName.StartsWith('EasyAppDev.Blazor.Icons.')) AND '$(MSBuildProjectName)' != 'EasyAppDev.Blazor.Icons.Sample' AND '$(MSBuildProjectName)' != 'EasyAppDev.Blazor.Icons.Sample.Client'">
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.11" Condition="'$(TargetFramework)' == 'net8.0'" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.5" Condition="'$(TargetFramework)' == 'net9.0'" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(MSBuildProjectName.StartsWith('EasyAppDev.Blazor.Icons.')) AND '$(MSBuildProjectName)' != 'EasyAppDev.Blazor.Icons.Sample' AND '$(MSBuildProjectName)' != 'EasyAppDev.Blazor.Icons.Sample.Client'">
+    <None Include="../../README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
   <ItemGroup>
     <!-- Roslyn Code Analyzers -->
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">

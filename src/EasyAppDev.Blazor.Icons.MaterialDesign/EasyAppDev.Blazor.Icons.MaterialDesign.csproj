@@ -1,35 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-
-    <!-- Trimming Configuration -->
-    <IsTrimmable>true</IsTrimmable>
-    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
-    <TrimMode>link</TrimMode>
-
-    <!-- SourceLink Configuration -->
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <DebugType>embedded</DebugType>
-
-    <!-- Documentation -->
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn);CS1591</NoWarn>
-
-    <!-- Package Information -->
+    <!-- Package-specific Information -->
     <PackageId>EasyAppDev.Blazor.Icons.MaterialDesign</PackageId>
-    <Authors>Mashrul Haque</Authors>
-    <Company>EasyAppDev</Company>
     <Description>Material Design icon library for Blazor - 7,400+ SVG icons with true trimming support. Only icons you reference are included in published output.</Description>
     <PackageTags>blazor;icons;svg;trimmable;material-design;embedded</PackageTags>
-    <RepositoryUrl>https://github.com/mashrulhaque/EasyAppDev.Blazor.Icons</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/mashrulhaque/EasyAppDev.Blazor.Icons</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Contact>info@easyappdev.com</Contact>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon-materialdesign.png</PackageIcon>
     <PackageReleaseNotes>
 Version 2.0.0 (Breaking Changes):
@@ -47,17 +22,7 @@ Version 1.0.2:
   </PropertyGroup>
 
   <ItemGroup>
-    <SupportedPlatform Include="browser" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.11" Condition="'$(TargetFramework)' == 'net8.0'" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.5" Condition="'$(TargetFramework)' == 'net9.0'" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="../../README.md" Pack="true" PackagePath="\"/>
-    <None Include="../../icon-materialdesign.png" Pack="true" PackagePath="\"/>
+    <None Include="../../icon-materialdesign.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
