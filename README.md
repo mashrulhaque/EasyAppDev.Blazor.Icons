@@ -136,12 +136,12 @@ dotnet add package EasyAppDev.Blazor.Icons.FluentUI
 
 | Package | Version | Icons | Development Size | Published Size (Trimmed) |
 |---------|---------|-------|-----------------|-------------------------|
-| `EasyAppDev.Blazor.Icons.Lucide` | 2.0.1 | ~1,500 | ~1.6MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.Bootstrap` | 2.0.1 | ~2,000 | ~3.2MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.MaterialDesign` | 2.0.1 | ~7,400 | ~10MB | **~2-5KB** ✨ |
-| `EasyAppDev.Blazor.Icons.FontAwesome5` | 2.0.1 | ~1,600 | ~2.5MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.FontAwesome6` | 2.0.1 | ~2,000 | ~3.2MB | **~2-4KB** ✨ |
-| `EasyAppDev.Blazor.Icons.FluentUI` | 2.0.1 | ~3,000 | ~4MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.Lucide` | 2.0.4 | ~1,500 | ~1.6MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.Bootstrap` | 2.0.4 | ~2,000 | ~3.2MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.MaterialDesign` | 2.0.4 | ~7,400 | ~10MB | **~2-5KB** ✨ |
+| `EasyAppDev.Blazor.Icons.FontAwesome5` | 2.0.4 | ~1,600 | ~2.5MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.FontAwesome6` | 2.0.4 | ~2,000 | ~3.2MB | **~2-4KB** ✨ |
+| `EasyAppDev.Blazor.Icons.FluentUI` | 2.0.4 | ~5,000 | ~8.8MB | **~2-4KB** ✨ |
 
 **Trimming is extremely effective!** With proper syntax (see warning below), published apps include only referenced icons. Typical apps using 50-100 icons from all libraries result in only **~6KB total overhead** (99.96% reduction).
 
